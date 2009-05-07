@@ -1,0 +1,26 @@
+http://www.freebsddiary.org/postfix.php
+http://wiki.dovecot.org
+
+http://techbuilder.org/showArticle.jhtml?articleId=188701471
+http://techbuilder.org/recipes/189400057
+
+Basically, if my known good configs are used, just install the below
+applications from ports, load my config files, and restart everything. 
+
+ /usr/ports/mail/postfix
+make install clean
+
+/usr/ports/dovecot
+make install clean
+
+/usr/ports/security/amavisd-new
+make install clean
+
+/usr/ports/security/clamav
+make install clean
+
+/usr/ports/databases/p5-BerkeleyDB
+make install clean
+
+/usr/ports/mail/p5-Mail-SpamAssassin
+make install clean

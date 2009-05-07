@@ -1,0 +1,33 @@
+Post install shit...
+1) Create svn user and svn group.
+2) Add www user to svn group (svn group should have svn, www as users).
+3) Create repo (as below) but make sure owner is svn:svn so Apache can serve it.
+4) if svn info shows that ssh+svn was used, add the UNIX user (travis) to the svn group.
+
+--- Now, let's use subversion!
+
+1) Create the svn repository
+	% svnadmin create /usr/local/svnrepo/unix_scripts
+
+2) Create standard dirs
+	% svn mkdir file:///usr/local/svnrepo/unix_scripts/trunk
+	% svn mkdir file:///usr/local/svnrepo/unix_scripts/tags
+	% svn mkdir file:///usr/local/svnrepo/unix_scripts/branches
+	% svn mkdir file:///usr/local/svnrepo/unix_scripts/docs
+
+At this point we have our repo setup.  Now, our goal is to put an existing file structure in svn control.
+
+3) Checkout the repo (Either the whole deal or just the dirs we want to add stuff to)
+	% svn checkout file:///usr/local/svnrepo/unix_scripts
+	% svn checkout file:///usr/local/svnrepo/unix_scripts/trunk
+
+4) Put stuff in dirs
+
+5) Now, let's add the stuff
+	% cd /path/to/the/repo/you/checkedout (where you just copied your files)
+	% svn add *
+	% svn commit --message "Your Message"
+That's it!
+
+http://www.owlnet.rice.edu/~comp314/svn.html
+http://www.yasashiisyndicate.org/wp-content/uploads/2006/05/subversion.html

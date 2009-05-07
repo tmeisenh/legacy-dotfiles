@@ -1,0 +1,9 @@
+make buildworld
+make buildkernel KERNCONF=???
+make installkernel KERNCONF=???
+reboot
+
+mergemaster -p
+make installworld
+mergemaster
+reboot

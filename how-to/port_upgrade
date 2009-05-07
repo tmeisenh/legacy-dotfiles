@@ -1,0 +1,2 @@
+sudo portversion -l "<"
+sudo portupgrade -iarRv

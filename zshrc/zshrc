@@ -1,0 +1,698 @@
+# $Id$
+#
+# Z shell configuration file
+#
+# Author: Travis Meisenheimer <travis@indexoutofbounds.com>
+#
+# Works on zsh versions > 4.0.9.
+#********************************************************************
+
+# Shell functions for startup
+isExists() {
+    if command -v $1 &>/dev/null
+    then
+        return 0;
+    else
+         return -1;
+    fi
+}
+
+# check for versions (compatibility reasons)
+# taken from grlm's zsh-lovers
+is4(){
+    if [[ $ZSH_VERSION == 4.* ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# current release
+# taken from grlm's zsh-lovers
+is42(){
+    if [[ $ZSH_VERSION == 4.<2->* ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Source /etc/profile
+if [ -f /etc/profile ]; then
+    source /etc/profile
+fi
+
+# Some environment variables and settings I like
+path=($path $HOME/bin)
+[[ -d $HOME/bin-`hostname -s`  ]] && path=($path $HOME/bin-`hostname -s`)
+export USER=`id -un`
+export LANG="en_US"
+export HOSTNAME=`/bin/hostname`
+export LC_ALL=POSIX
+export EDITOR='vim'
+export PAGER='less'
+export ZLS_COLORS=$LS_COLORS
+export ZSHDIR=$HOME/.zsh
+export ZSHCONF=$HOME/zshrc
+export SSHSOURCE=`echo $SSH_CONNECTION | awk '{print $1}'`
+export SVN_SSH="ssh -l travis"
+export SVN_URL=https://192.168.1.2/svn
+bindkey -v        #vi key bindings
+
+# Load OS specific environment variables and settings
+[[ -f $ZSHCONF/zshrc-`uname | tr "[:upper:]" "[:lower:]"` ]] && source $ZSHCONF/zshrc-`uname | tr "[:upper:]" "[:lower:]"`
+
+# Load host specific environment variables and settings
+[[ -f $ZSHCONF/zshrc-`hostname -s` ]] && source $ZSHCONF/zshrc-`hostname -s`
+
+# Set term if not set
+if [ "$TERM" = "" -o "$TERM" = "unknown" ]; then
+    $TERM="vt100"
+    if [ "`uname`" = "Linux" ]; then
+        $TERM="linux"
+    fi
+fi
+     
+# Set Logs and History
+watch=(notme root)
+
+# Create $user history files
+HISTSIZE=10000
+HISTFILE=$HOME/.zsh_history
+SAVEHIST=65536
+DIRSTACKSIZE=16
+
+# Load some cool zsh features
+typeset -U path cdpath manpath fpath
+is4 && autoload -U compinit && compinit
+is4 && autoload -U zed
+autoload zmv
+autoload zcalc
+autoload zargs
+autoload colors; colors
+autoload history-search-end
+autoload zkbd
+is4 && zmodload -i zsh/complist
+is4 && autoload -U predict-on && \
+zle -N predict-on             && \
+zle -N predict-off            && \
+bindkey "^X^Z" predict-on     && \
+bindkey "^Z" predict-off      && \
+
+# Set root paths
+# For root users, ensure that /usr/local/sbin, /usr/sbin, and /sbin
+# are in the path.
+if [ "`id -u`" = "0" ]; then
+    echo $PATH | grep /usr/local/sbin 1> /dev/null 2> /dev/null
+    if [ ! $? = 0 ]; then
+        PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
+    fi
+fi
+
+# Set display colors - This is a GNU coreutils ability only.  We use 
+# /etc/DIR_COLORS or our own, modified version which we store in ~.
+`isExists gdircolors`  && alias dircolors="gdircolors"
+[[ -f ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors` 
+
+# System wide aliases
+alias -g '...'='../..'
+alias -g '....'='../../..'
+alias -g '.....'='../../../..'
+alias -g '......'='../../../../..'
+alias -g '.......'='../../../../../..'
+
+# Figure out which commands we have
+`isExists gtail`  && alias tail="gtail"
+`isExists ghead` && alias head="ghead"
+`isExists gsort` && alias sort="gsort"
+`isExists gwc` && alias wc="gwc"
+`isExists gcp` && alias cp="gcp"
+`isExists gls` && alias grep="grep --color=always" # if we have gls, then we can assume gnu grep
+
+alias -g L="|less"
+alias -g M="|more"
+alias -g G="|grep"
+alias -g Ge="|grep -v grep"
+alias -g N="&>/dev/null&"
+alias -g T="|tail"
+alias -g H="|head"
+alias -g SL="|sort | less"
+alias -g S="|sort"
+alias -g C="|wc -l"
+
+# ls is a special case, since I have a ton of aliases to it.
+alias ls="ls -F -T 0 -b -h -X"
+alias lsd="ls -d -T 0 -b -h -X *(-/DN)"
+alias llsd="ls -ld -T 0 -b -h -X *(-/DN)"
+alias lsa="ls -ld -h -X -b -T 0 .*"
+alias last_mod="ls -Flat -h -b -X -T 0"
+
+`isExists gls` && alias ls="gls --color -F -T 0 -b -h -X"
+`isExists gls` && alias lsd="gls --color -d -T 0 -b -h -X *(-/DN)"
+`isExists gls` && alias llsd="gls --color -ld -T 0 -b -h -X *(-/DN)"
+`isExists gls` && alias lsa="gls --color -ld -h -X -b -T 0 .*"
+`isExists gls` && alias last_mod="gls --color -Flat -h -b -X -T 0"
+
+alias bz="tar -xvjf"
+alias ctar="tar -vzcf"
+alias utar="tar -xvzf"
+alias cp="nocorrect gcp"
+
+alias grep="grep -Hn"
+
+alias cl="clear"
+alias cls=cl
+alias gz=gunzip
+alias mkdir="nocorrect mkdir" 
+alias mv="nocorrect mv -i"
+alias pks="source ~/.zshrc"
+alias psaux="ps aux G"
+alias rm="rm -i"
+alias sl=ls
+alias ";ls"=ls
+alias ds="du -csh $1 "
+alias lss=ds
+alias ll="ls -lah"
+alias se="smartextract"
+alias pingg="ping -c 3 www.google.com"
+alias vi="vim -X"
+alias svi="sudo vim -X"
+alias kill="kill -9"
+alias readrc="$PAGER ~/.zshrc"
+alias dtsp="date +%F"
+
+# UN/SET OPTIONS grouped by action
+# man zshoptions for more information
+# Completion Options
+setopt alwaystoend 
+setopt alwayslastprompt 
+setopt completealiases 
+setopt completeinword
+unset autoparamslash
+
+# Ambigious Completions
+setopt autolist 
+setopt automenu 
+setopt nobeep
+unset menu_complete
+
+# Globbing Options
+setopt extended_glob 
+setopt glob_dots 
+setopt globcomplete 
+setopt nullglob
+
+# History Options
+setopt appendhistory 
+setopt extendedhistory 
+setopt banghist
+is4 && setopt sharehistory 
+is4 && setopt histignoredups 
+
+# PUSHD/POPD
+setopt pushdtohome 
+setopt autopushd 
+setopt pushdignoredups 
+setopt pushdminus 
+setopt pushdsilent
+
+# Miscellaneous
+setopt notify 
+setopt autoresume 
+setopt noclobber 
+setopt rcquotes 
+setopt login 
+setopt longlistjobs 
+setopt printeightbit 
+setopt nohup 
+setopt pathdirs 
+setopt markdirs 
+setopt zle 
+setopt vi 
+setopt no_sh_word_split
+#setopt correct_all
+
+unset printexitvalue 
+unset bgnice 
+unset mailwarning 
+unset flow_control 
+unset rmstarsilent
+# cdablevars will match for cd anything that fits the pattern at any
+# point in the absolute path to pwd.  So, if in $HOME, it will match
+# on /, /home, and /home/$user.  This is a performance nightmare
+# on corporate systems.
+unset cdablevars
+
+#unset correct_all
+#unset correct
+
+# Complete table of color definitions
+# Text Foreground Colors
+
+fg_black=$'\e[0;30m'
+fg_red=$'\e[0;31m'
+fg_green=$'\e[0;32m'
+fg_brown=$'\e[0;33m'
+fg_blue=$'\e[0;34m'
+fg_purple=$'\e[0;35m'
+fg_cyan=$'\e[0;36m'
+fg_lgray=$'\e[0;37m'
+fg_dgray=$'\e[1;30m'
+fg_lred=$'\e[1;31m'
+fg_lgreen=$'\e[1;32m'
+fg_yellow=$'\e[1;33m'
+fg_lblue=$'\e[1;34m'
+fg_pink=$'\e[1;35m'
+fg_lcyan=$'\e[1;36m'
+fg_white=$'\e[1;37m'
+
+# Text Background Colors
+
+bg_red=$'\e[0;41m'
+bg_green=$'\e[0;42m'
+bg_brown=$'\e[0;43m'
+bg_blue=$'\e[0;44m'
+bg_purple=$'\e[0;45m'
+bg_cyan=$'\e[0;46m'
+bg_gray=$'\e[0;47m'
+
+# Attributes
+
+at_normal=$'\e[0m'
+at_bold=$'\e[1m'
+at_italics=$'\e[3m'
+at_underl=$'\e[4m'
+at_blink=$'\e[5m'
+at_outline=$'\e[6m'
+at_reverse=$'\e[7m'
+at_nondisp=$'\e[8m'
+at_strike=$'\e[9m'
+at_boldoff=$'\e[22m'
+at_italicsoff=$'\e[23m'
+at_underloff=$'\e[24m'
+at_blinkoff=$'\e[25m'
+at_reverseoff=$'\e[27m'
+at_strikeoff=$'\e[29m'
+
+reset=$'\e[30m' # This is usually worthless
+
+# Set prompts
+# man zshmisc for more information.
+# My Prompt: username@hostname current_directory HH:mm %
+# Local vars...
+p_username=$fg_lblue
+p_hostname=$fg_lblue
+p_command=$fg_lblue
+
+# Normal conditions, black commands with red username.
+p_command=$fg_black
+p_username=$fg_red
+
+# Unusual conditions, on freebsd or ssh back to laptop.
+[[ "`uname `" = "FreeBSD" ]] && p_username=$fg_green
+[[ "`uname `" = "FreeBSD" ]] && p_command=$fg_white
+
+# SSH from freebsd to laptop
+[[ -n "$SSHSOURCE" ]] && [[ "$IS_OSX" = "0" ]] && p_command=$fg_white
+
+# SSH from laptop to freebsd
+[[ -n "$SSHSOURCE" ]] && [[ "$IS_BSD" = "0" ]] && p_command=$fg_black
+
+PROMPT="%{$p_username%}%n@%m %@ %{$p_hostname%}%1d %# %{$p_command%}"
+
+# Java and Tomcat path fixes
+if [ -e $HOME/.java/java-env ]; then
+    source $HOME/.java/java-env
+fi
+
+# Functions for displaying good stuff in a terminal title
+case $TERM in
+    *xterm*|rxvt|(K|a)term)
+    precmd () {
+        print -Pn "\033]0;%n@%m%#  %~  %W :: %T\a" 
+    }
+    preexec () {
+        print -Pn "\033]0;%n@%m%#  <$1>  %W :: %T\a" 
+    }
+    ;;
+esac
+
+# Get the keys working right
+# This should work on all *nix systems.
+bindkey "^[[2~" yank                   ## backspace
+bindkey "^[[3~" delete-char            ## delete
+bindkey "^[[5~" up-line-or-history     ## PageUp
+bindkey "^[[6~" down-line-or-history   ## PageDown
+bindkey "^[1~" beginning-of-line       ## home
+bindkey "^[4~" end-of-line             ## end
+bindkey "^[e" expand-cmd-path 
+bindkey "^[[A" up-line-or-search       ## up arrow for back-history-search
+bindkey "^[[B" down-line-or-search     ## down arrow for fwd-history-search
+bindkey " " magic-space                ## do history expansion on space
+
+# Basically, when I ssh into boxes from my powerbook I have to adjust
+# how I map the keys.
+if [ "$SSHSOURCE" = "192.168.1.76" -o "$SSHSOURCE" = "192.168.1.100" ]; then
+        bindkey "^[[2~" yank                    ## backspace
+        bindkey "^[[3~" delete-char             ## delete
+        bindkey "^[[5~" up-line-or-history      ## PageUp
+        bindkey "^[[6~" down-line-or-history    ## PageDown
+        bindkey "^[1~" beginning-of-line        ## home
+        bindkey "^[4~" end-of-line              ## end
+        bindkey "^[e" expand-cmd-path
+        bindkey "^[[A" up-line-or-search        ## up arrow for back-history-search
+        bindkey "^[[B" down-line-or-search      ## down arrow for fwd-history-search
+        bindkey " " magic-space                 ## do history expansion on space
+fi
+
+stty erase `tput kbs`             ## I forget why I have this...
+stty erase '^?'         
+
+# Binding of the keys for command line editing
+# Just hit control plus key!
+bindkey '^K' kill-region
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^W' complete-word
+bindkey '^L' clear-screen
+bindkey '\e[1~' beginning-of-line    
+bindkey '\e[4~' end-of-line
+
+# Shell functions
+setenv() { export $1=$2 }  # csh compatibility
+
+# Use hard limits, except for a smaller stack and no core dumps
+unlimit
+limit stack 8192
+limit core 0
+limit coredumpsize 0
+limit -s
+
+# Usage: pskill <application/program name>
+# Description: kills a process
+pskill () { 
+    kill -9 $(ps ax | grep $1 | awk --posix '{ print $1 }')
+    echo -n "Killed $1 process..."
+}
+
+# Usage: smartextract <file>
+# Description: extracts archived files
+# This uses the aliases defined above
+smartextract () {
+    if [ -f $1 ]; then
+        case $1 in
+            *.tar.bz2)
+                bz $1
+                ;;
+            *.tar.gz)
+                utar $1
+                ;;
+            *.bz2)
+                bunzip2 $1
+                ;;
+            *.gz)
+                gunzip $1
+                ;;
+            *.jar)
+                jar xf $1
+                ;;
+            *.tar)
+                utar $1
+                ;;
+            *.tbz2)
+                bz $1
+                ;;
+            *.tgz)
+                utar $1
+                ;;
+            *.zip)
+                unzip $1
+                ;;
+            *.Z)
+                uncompress $1
+                ;;
+            *)
+                echo "'$1' cannot be extracted via smartextract()." 
+                ;;
+        esac
+    else
+        echo "'$1' is not a valid file."
+    fi
+}
+
+# Usage: show-archive <archive>
+# Description: view archive without unpack
+showarchive() {
+    if [[ -f $1 ]]; then
+        case $1 in
+            *.tar.gz)  
+                gunzip -c $1 | tar -tf - -- 
+                ;;
+            *.tar)
+                tar -tf $1 
+                ;;
+            *.tgz)
+                tar -ztf $1 
+                ;;
+            *.zip)
+                unzip -l $1 
+                ;;
+            *.bz2)
+                bzless $1 
+                ;;
+            *)
+                echo "'$1' cannot be shown via showarchive" 
+                ;;
+        esac
+    else
+        echo "'$1' is not a valid archive"
+    fi
+}
+
+
+normalize () {
+    if [ -z $1 ]; then
+        echo "Usage: normalize <file>";
+    else    
+        if [ -f $1 ]; then
+            perl -pi -e 's/\r\n/\n/g' $1
+            perl -pi -e 's/\r/\n/g' $1
+        else
+            echo "'$1' is not a valid file"
+        fi
+    fi
+}
+
+# This only works if the remote host allows password authentication
+# If you leave the passphrase blank you won't have to type a password for
+# access into the remote system.
+#
+# We set permissions as such because I had problems on my BSD box
+# We also rm -f to make sure the file gets deleted
+sshbless () {
+    echo "Checking to see if a public key exists... "
+
+    if [ ! -f .ssh/id_dsa ]; then
+        echo "None found, generating a 2048 bit dsa key..."
+        ssh-keygen -t dsa -b 2048 -f ~/.ssh/id_dsa
+    else
+        echo "Found existing ssh-keygen key..."
+    fi
+
+    echo "Copying public key to remote host..."
+    scp ~/.ssh/id_dsa.pub $1:~/.ssh/tempid
+    echo "Concatenating into authorized_keys2, fixing permissions, and removing temp files..."
+    if [ -f ~/.ssh/authorized_keys2 ]; then
+        ssh $1 "cat ~/.ssh/tempid >> ~/.ssh/authorized_keys2"
+    else
+        ssh $1 "cat ~/.ssh/tempid > ~/.ssh/authorized_keys2"
+    fi
+    ssh $1 "chmod 644 ~/.ssh/authorized_keys2"
+    ssh $1 "rm -f ~/.ssh/tempid"
+    
+    echo "Done!"
+} 
+
+# Generates a random password using apg.
+random_password() {
+    echo "Here are ten random passwords for you.  Pick one, or run again. \n\n"
+    apg -q -m 10 -x 10 -M NC -n 10 -t
+}
+
+prompt_fix_white() {
+    PROMPT="%{${fg_red}%}%n@%m %@ %{${fg_lblue}%}%1d %# %{${fg_white}%}"
+}
+
+prompt_fix_black() {
+    PROMPT="%{${fg_red}%}%n@%m %@ %{${fg_lblue}%}%1d %# %{${fg_black}%}"
+}
+
+# lowercases a string
+to_lower() {
+    echo $1 | tr "[:upper:]" "[:lower:]"
+}
+
+# uppercases a string 
+to_upper() {
+    echo $1 | tr "[:lower:]" "[:upper:]"
+}
+
+unix_timestamp_to_date() {
+    perl -e "require 'ctime.pl'; print &ctime($1);"
+}
+
+# This grabs all IPs and hostnames from the known hosts... 
+local knownhosts
+knownhosts=( ${${${(f)"$(<$HOME/.ssh/known_hosts)"}%%\ *}%%,*} )
+
+# set command completions
+zle -C complete complete-word complete-files
+
+# Pretty menu!
+zstyle ':completion:*' menu select=1
+
+# Completion options
+zstyle ':completion:*' completer _complete _prefix _expand _approximate _correct
+zstyle ':completion:*:expand:*' tag-order all-expansions
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:predict:*' completer _complete
+zstyle ':completion:::::' completer _complete _correct
+zstyle ':completion:*:processes' command 'ps -au$USER'
+zstyle ':completion:*' verbose yes 
+zstyle ':completion:*:descriptions' format '%d completing %d'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:*:zcompile:*' ignored-patterns '(*~|*.zwc)'
+zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
+zstyle ':completion:*:(ssh|scp):*:users' ignored-patterns adm bin daemon halt lp named shutdown sync mysql nobody postfix root quest unknown clamav appowner appserver mailman qtss windowserver xgridagent xgridcontroller guest amavisd eppc jabber securityagent tokend sshd www cyrusimap indexoutofbounds.com
+
+# Correction
+zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'
+zstyle ':completion:*:correct:*' insert-unambiguous true
+zstyle ':completion:*:correct:*' max-errors 2 numeric
+zstyle ':completion:*:correct:*' original true
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+
+# Completion caching
+zstyle ':completion:*' use-cache 1
+zstyle ':completion::complete:*' use-cache 1 cache-path $ZSHDIR/cache/
+
+# Expand partial paths
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-slashes 'yes'
+
+# Include non-hidden directories in globbed file completions
+# for certain commands
+zstyle ':completion::complete:*' '\'
+
+# Use menuselection for pid completion
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
+
+# Tag-order 'globbed-files directories' all-files 
+zstyle ':completion::complete:*:tar:directories' file-patterns '*~.*(-/)'
+
+# Don't complete backup files as executables
+zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
+
+# Separate matches into groups
+zstyle ':completion:*:matches' group 'yes'
+
+# With commands like rm, it's annoying if you keep getting offered the same
+# file multiple times. This fixes it. Also good for cp, et cetera..
+zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:cp:*' ignore-line yes
+
+# Describe each match group.
+zstyle ':completion:*:descriptions' format "%d"
+
+# Messages/warnings format
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format '%d--No matches for: %d'
+ 
+# Describe options in full
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+
+bindkey '^X\t' complete
+
+complete-files () { compadd - * }
+
+compctl -a {,un}alias             # -a is for alias
+compctl -/ {c,push,pop}d
+compctl -c exec                   # -c is commands, shell functs, alias
+compctl -c man
+compctl -c {where,which}
+compctl -o {,un}setopt            # -o is names of shell functions
+compctl -E {,un}setenv            # -E is environment variables
+compctl -E printenv
+compctl -b bindkey                # -b is keybinding names
+compctl -j fg
+compctl -j kill                   # -j is job names
+compctl -u chown
+compctl -c which
+compctl -c sudo
+
+# completion for "man" by Gossamer <gossamer@tertius.net.au>
+compctl -f -x 'S[1][2][3][4][5][6][7][8][9]' -k '(1 2 3 4 5 6 7 8 9)' \
+    - 'R[[1-9nlo]|[1-9](|[a-z]),^*]' -K 'match-man' \
+    - 's[-M],c[-1,-M]' -g '*(-/)' \
+          - 's[-P],c[-1,-P]' -c \
+        - 's[-S],s[-1,-S]' -k '( )' \
+    - 's[-]' -k '(a d f h k t M P)' \
+    - 'p[1,-1]' -c + -K 'match-man' \
+    -- man
+
+compdef _gnu_generic feh df
+
+# Tab host completion for programs  
+compctl -k hostnames ping sftp host ssh
+
+# Talk completion
+function whoson { reply=(`users`); }
+compctl -K whoson talk ytalk
+
+# Filter filename completions based on context
+#function listclass () { reply=(`${(ls *.class)%.class}`); }
+#function listclass () { reply=(${$(ls *.class)%.class}); }
+#compctl -K listclass java
+compctl -g '*.java' + -g '*(-/)' javac
+compctl -g '*.pdf' + -g '*(-/)' xpdf
+compctl -g '*.(Z|gz|tgz)' + -g '*' zcat gunzip
+compctl -g '*.(tar.Z|tar.gz|tgz|tar.bz2)' + -g '*' tar smartextract se
+compctl -g '*.(zip|ZIP)' + -g '*' unzip smartextract se
+compctl -g '*.(mpg|MPG|mpeg|MPEG|avi|AVI|wmv|WMV|mov|MOV|asf|ASF)' + -g '*(-/)' gxine xine
+compctl -g '*.(mp3|MP3|ogg|OGG|wav|WAV|temp|TEMP)' + -g '*(-/)'  mpg123 xmms
+compctl -g '*(-*)' + -g '*(-/)' strip
+compctl -g '*.(ps|eps)' + -g '*(-/)' gs ghostview psnup psduplex ps2ascii
+compctl -g '*.dvi' + -g '*(-/)' xdvi dvips
+compctl -g '*.(xpm|xpm.gz)' + -g '*(-/)' xpmroot sxpm pixmap xpmtoppm
+compctl -g '*(-/) .*(-/)' cd
+compctl -g '*.html' + -g '*(-/)' appletviewer
+
+# Reverse filename filtering
+compctl -g '^(*.o|*.class|*.gif|*.a|*.pdf|*.rtf|*.doc|*.sxw)' + -g '*(-/)' more less cat
+compctl -g '^(*.o|*.class|*.gif|*.a|*.pdf|*.rtf|*.doc|*.sxw|*.zip|*.tar|*.gz|*.bz2|*.tgz|*.rpm)' + -g '*(-/)' vi vim
+
+# Distro specific filename completion filtering 
+compctl -g '*.tgz' + -g '*(-/)' removepkg installpkg explodepkg upgradepkg
+compctl -g '*.rpm' + -g '*(-/)' rpm2tgz rpm
+compctl -g '*.src.rpm' + -g '*(-/)' rpmbuild
+
+# Umask settings 
+# -rw-r--r--
+ umask 022
+
+# -rw-rw-r--
+# umask 2
+
+# -rw-------
+#umask 007
+
+# If root set unmask to 077 to allow new files to remain private 
+if [ "`id -u`" = "0" ];    then
+    umask 077
+fi
+
+# End

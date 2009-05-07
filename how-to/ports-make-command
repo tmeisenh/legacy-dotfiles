@@ -1,0 +1,9 @@
+make install
+make deinstall
+make reinstall
+make clean
+make test
+make
+make config
+make showconfig
+make rmconfig
