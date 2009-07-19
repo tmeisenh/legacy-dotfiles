@@ -46,10 +46,10 @@ echo ""
 echo "########################################"
 echo "Please veryif the following information before I create things..."
 echo "svn user: "${svn_user}
-echo "svn url: " ${svn_url}
-echo "Application name: " ${app_name}
-echo "Create repo: " ${create_repo}
-echo "Use BRB file system? " ${use_bdb}
+echo "svn url: "${svn_url}
+echo "Application name: "${app_name}
+echo "Create repo: "${create_repo}
+echo "Use BRB file system? "${use_bdb}
 echo ""
 echo "Proceed? (y/n)"
 read proceed
@@ -62,9 +62,9 @@ fi
 
 # Make the default file structure
 echo " Creating skeletion directory in tmp dir..."
-rm -rf $svn_skele_dir
-mkdir $svn_skele_dir
-mkdir $svn_skele_dir/branches $svn_skele_dir/tags $svn_skele_dir/trunk $svn_skele_dir/docs
+rm -rf ${svn_skele_dir}
+mkdir ${svn_skele_dir}
+mkdir ${svn_skele_dir}/branches ${svn_skele_dir}/tags ${svn_skele_dir}/trunk ${svn_skele_dir}/docs
 echo ""
 
 
@@ -76,8 +76,8 @@ fi
 
 
 echo "Using svn to do the import ... "
-echo "executing: ${svn_bin}/svn import --auto-props -q -m "Initial import" "$svn_skele_dir" file://${svn_url}/${app_name}"
-${svn_bin}/svn import --auto-props -q -m "Initial import" "$svn_skele_dir" file://${svn_url}/${app_name}
+echo "executing: ${svn_bin}/svn import --auto-props -q -m "Initial import" "${svn_skele_dir}" file://${svn_url}/${app_name}"
+${svn_bin}/svn import --auto-props -q -m "Initial import" "${svn_skele_dir}" file://${svn_url}/${app_name}
 echo "Finished with svn import...adjusting UNIX permissions for Apache"
 
 rm -rf $svn_skele_dir
