@@ -30,8 +30,13 @@ hash -d log=/var/log
 hash -d ports=/opt/local/var/macports/sources/rsync.macports.org/release/ports
 
 export WORK_PC=2UA6240G29.devsub.dev.dce.usps.gov
-export FORREST_HOME=/usr/local/apache-forrest-0.8
-PATH=$PATH:$FORREST_HOME/bin
+
+# Usage: diskeject drive_number
+# Description: kills a process
+diskeject () { 
+    echo -n "unmounting drive $1..."
+    drutil tray eject -drive $1
+}
 
 # End
 
