@@ -55,8 +55,7 @@ export ZLS_COLORS=$LS_COLORS
 export ZSHDIR=$HOME/.zsh
 export ZSHCONF=$HOME/zshrc
 export SSHSOURCE=`echo $SSH_CONNECTION | awk '{print $1}'`
-export SVN_SSH="ssh -l travis"
-export SVN_URL=https://192.168.1.2/svn
+export SVN_URL=svn+ssh://tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/svn
 bindkey -v        #vi key bindings
 
 # Load OS specific environment variables and settings
