@@ -238,7 +238,7 @@ unset flow_control
 unset rmstarsilent
 # cdablevars will match for cd anything that fits the pattern at any
 # point in the absolute path to pwd.  So, if in $HOME, it will match
-# on /, /home, and /home/$user.  This is a performance nightmare
+# on /, /home, and /home/*/.  This is a performance nightmare
 # on corporate systems.
 unset cdablevars
 
