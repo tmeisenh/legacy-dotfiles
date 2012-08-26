@@ -9,7 +9,7 @@
 
 
 # System  specific environment variables and settings
-VIM=/usr/local/share/vim/vim72
+VIM=/usr/local/share/vim/vim73
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
 
 export VIM
