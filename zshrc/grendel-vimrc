@@ -1,14 +1,14 @@
-"	.vimrc
-"	Travis Meisenheimer <tmeisenheimer@users.sourceforge.net>
-"	My personal .vimrc file that adds basic functionality
-"	and makes vim easier to use.
-"	Last updated Sept 25, 2004
-
-
+" $Id$
+" Travis Meisenheimer <tmeisenheimer@users.sourceforge.net>
+" My personal .vimrc file that adds basic functionality
+" and makes vim easier to use.
+" Make sure to set $VIM to the location of your system's vim 
+" syntax and global vimrc files.  Set this in /etc/profile or
+" or your shell's .rc file.
+" Last updated Sept 25, 2004
 set noautoindent
 set nosmartindent
 set nonumber
-
 filetype plugin on
 filetype indent off
 syntax on
@@ -27,6 +27,5 @@ set nowrap
 set ruler
 set magic
 set dictionary=/usr/share/dict/words
-
 "set t_kb=
 "fixdel
