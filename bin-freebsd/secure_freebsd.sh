@@ -6,28 +6,30 @@
 echo "I am going to perform some basic FreeBSD hardening hacks..."
 echo ""
 
-echo "Editing /etc/login.conf..."
-echo "Changing the default password encryption to blowfish..."
-sed s/md5/blf/ /etc/login.conf >> /etc/login.conf.secure
-mv /etc/login.conf /etc/login.conf.orig.unsecure
-mv /etc/login.conf.secure /etc/login.conf
-echo "Done with /etc/login.conf edits. do a more /etc/login.conf and look for passwors to beginw ith $2"
-echo ""
+# Prior to 9.1 you'd want to chang this but after 9.1 you don't.
 
-echo "Now rebuilding the password database with our new changes..."
-cp /etc/master.passwd /etc/master.passwd.orig.unsecure
-/usr/bin/cap_mkbd /etc/login.conf
-echo "Done with password database updates."
-echo "Please inform all users that they MUST reset their passwords..."
-echo "(passwd is the command to use.)"
-echo ""
+#echo "Editing /etc/login.conf..."
+#echo "Changing the default password encryption to blowfish..."
+#sed s/md5/blf/ /etc/login.conf >> /etc/login.conf.secure
+#mv /etc/login.conf /etc/login.conf.orig.unsecure
+#mv /etc/login.conf.secure /etc/login.conf
+#echo "Done with /etc/login.conf edits. do a more /etc/login.conf and look for passwors to beginw ith $2"
+#echo ""
 
-echo "Editing /etc/auth.conf..."
-echo "Changing the default new password encryption to blowfish..."
-cp /etc/auth.conf /etc/auth.conf.orig.unsecure
- echo "crypt_default = blf" >> /etc/auth.conf
-echo "Done with auth.conf edits."
-echo ""
+#echo "Now rebuilding the password database with our new changes..."
+#cp /etc/master.passwd /etc/master.passwd.orig.unsecure
+#/usr/bin/cap_mkbd /etc/login.conf
+#echo "Done with password database updates."
+#echo "Please inform all users that they MUST reset their passwords..."
+#echo "(passwd is the command to use.)"
+#echo ""
+
+#echo "Editing /etc/auth.conf..."
+#echo "Changing the default new password encryption to blowfish..."
+#cp /etc/auth.conf /etc/auth.conf.orig.unsecure
+# echo "crypt_default = blf" >> /etc/auth.conf
+#echo "Done with auth.conf edits."
+#echo ""
 
 echo "Now removing the standard MOTD and login display informaton"
 touch /etc/motd

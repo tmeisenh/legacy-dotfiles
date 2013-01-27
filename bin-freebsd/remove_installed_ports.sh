@@ -1,5 +1,7 @@
 #/bin/sh
 
+# requires ports-mgmt/portupgrade for pkgdb
+
 # sync pkgdb with ports tree
 pkgdb -F
 
