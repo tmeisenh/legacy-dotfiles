@@ -6,12 +6,13 @@
 " syntax and global vimrc files.  Set this in /etc/profile or
 " or your shell's .rc file.
 " Last updated Sept 25, 2004
+
+syntax on
 set noautoindent
-set nosmartindent
+set smartindent
 set nonumber
 filetype plugin on
 filetype indent off
-syntax on
 set history=1000
 set nocompatible
 set showmatch
@@ -20,7 +21,7 @@ set incsearch
 "set ignorecase
 set showmode
 set tabstop=8
-set noexpandtab
+set expandtab
 set shiftwidth=8
 set backspace=2
 set nowrap

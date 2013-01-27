@@ -142,6 +142,9 @@ source $ZSHCONF/functions.zsh
 # set command completions
 source $ZSHCONF/completions.zsh
 
+# Set envrionment stuff
+source $ZSHCONF/environment.zsh
+
 # Umask settings 
 # -rw-r--r--
  umask 022
