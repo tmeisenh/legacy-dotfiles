@@ -1,4 +1,4 @@
-# $Id: zshrc 27 2013-01-27 02:01:48Z tmeisenh $
+# $Id$
 #
 # Z shell configuration file
 #
