@@ -1,2 +1,3 @@
-sudo portversion -l "<"
+sudo portsnap fetch update
+sudo pkg_version -l "<"
 sudo portupgrade -iarRv
