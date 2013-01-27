@@ -66,6 +66,7 @@ export ZSHDIR=$HOME/.zsh
 export ZSHCONF=$HOME/zshrc
 export SSHSOURCE=`echo $SSH_CONNECTION | awk '{print $1}'`
 export SVN_URL=svn+ssh://tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/svn
+export GIT_URL=tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/git
 bindkey -v        #vi key bindings
 
 # Set term if not set
