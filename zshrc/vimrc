@@ -9,7 +9,7 @@
 
 syntax on
 set noautoindent
-set smartindent
+set nosmartindent
 set nonumber
 filetype plugin on
 filetype indent off

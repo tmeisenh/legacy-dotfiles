@@ -126,8 +126,13 @@ ssh-automate-login () {
     
     echo "Done!"
 } 
+
 # alias b/c i'm old
 alias sshbless=ssh-automate-login
+
+create_remote_git() {
+    ssh $1 "mkdir -m 700 ~/git/$2.git && cd ~/git/$2.git && git --bare init"
+}
 
 # Generates a random password using apg.
 random_password() {
