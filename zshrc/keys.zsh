@@ -9,7 +9,8 @@
 
 # Get the keys working right
 # This should work on all *nix systems.
-bindkey "^[[2~" yank                   ## backspace
+# If not, you can hit control-v and then the key you want to see its binding.
+bindkey "^[[2~" yank                   ## insert
 bindkey "^[[3~" delete-char            ## delete
 bindkey "^[[5~" up-line-or-history     ## PageUp
 bindkey "^[[6~" down-line-or-history   ## PageDown
