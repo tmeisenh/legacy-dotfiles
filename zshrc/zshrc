@@ -54,7 +54,7 @@ fi
 
 # Some environment variables and settings I like
 path=($path $HOME/bin)
-[[ -d $HOME/bin-`hostname -s`  ]] && path=($path $HOME/bin-`hostname -s`)
+[[ -d $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"`  ]] && path=($path $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"`)
 export USER=`id -un`
 export LANG="en_US"
 export HOSTNAME=`/bin/hostname`
