@@ -64,7 +64,7 @@ at_blinkoff=%{$'\e[25m'%}
 at_reverseoff=%{$'\e[27m'%}
 at_strikeoff=%{$'\e[29m'%}
 
-reset_color=$'{\e[30m'} # This is usually worthless
+reset_color=%$'{\e[30m'%} # This is usually worthless
 
 
 # man zshmisc for more information.
@@ -73,7 +73,7 @@ reset_color=$'{\e[30m'} # This is usually worthless
 p_username=$fg_green
 p_hostname=$fg_green
 p_directory=$fg_lblue
-p_command=$fg_white
+p_command=$reset_color
 
 # If we're root, then change name to red
 if [[ "`whoami`" == "root" ]] ; then
