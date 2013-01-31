@@ -7,46 +7,6 @@
 # Works on zsh versions > 4.0.9.
 #********************************************************************
 
-# Shell functions for startup
-isExists() {
-    if command -v $1 &>/dev/null
-    then
-        return 0;
-    else
-         return -1;
-    fi
-}
-
-# check for versions (compatibility reasons)
-# taken from grlm's zsh-lovers
-is4(){
-    if [[ $ZSH_VERSION == 4.* ]]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-# check for versions (compatibility reasons)
-# taken from grlm's zsh-lovers
-is5(){
-    if [[ $ZSH_VERSION == 5.* ]]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-# current release
-# taken from grlm's zsh-lovers
-is42(){
-    if [[ $ZSH_VERSION == 4.<2->* ]]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
 # Source /etc/profile
 if [ -f /etc/profile ]; then
     source /etc/profile
@@ -88,16 +48,16 @@ DIRSTACKSIZE=16
 
 # Load some cool zsh features
 typeset -U path cdpath manpath fpath
-is5 && autoload -U compinit && compinit
-is5 && autoload -U zed
+autoload -U compinit && compinit
+autoload -U zed
 autoload zmv
 autoload zcalc
 autoload zargs
 autoload colors; colors
 autoload history-search-end
 autoload zkbd
-is5 && zmodload -i zsh/complist
-is5 && autoload -U predict-on && \
+zmodload -i zsh/complist
+autoload -U predict-on && \
 zle -N predict-on             && \
 zle -N predict-off            && \
 bindkey "^X^Z" predict-on     && \
@@ -115,7 +75,7 @@ fi
 
 # Set display colors - This is a GNU coreutils ability only.  We use 
 # /etc/DIR_COLORS or our own, modified version which we store in ~.
-`isExists gdircolors`  && alias dircolors="gdircolors"
+gdircolors &>/dev/null 2>&1 && alias dircolors="gdircolors" 
 [[ -f ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors` 
 
 # System wide aliases
