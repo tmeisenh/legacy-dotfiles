@@ -97,7 +97,7 @@ limit core 0
 limit coredumpsize 0
 limit -s
 
-source $ZSHCONF/functions.zsh
+source $ZSHCONF/shellfunctions.zsh
 
 # set command completions
 source $ZSHCONF/completions.zsh
