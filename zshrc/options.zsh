@@ -14,13 +14,13 @@ setopt alwaystoend
 setopt alwayslastprompt 
 setopt completealiases 
 setopt completeinword
-unset autoparamslash
+unsetopt autoparamslash
 
 # Ambigious Completions
 setopt autolist 
 setopt automenu 
 setopt nobeep
-unset menu_complete
+unsetopt menu_complete
 
 # Globbing Options
 setopt extended_glob 
@@ -32,8 +32,8 @@ setopt nullglob
 setopt appendhistory 
 setopt extendedhistory 
 setopt banghist
-is5 && setopt sharehistory 
-is5 && setopt histignoredups 
+setopt sharehistory 
+setopt histignoredups 
 
 # PUSHD/POPD
 setopt pushdtohome 
@@ -58,16 +58,16 @@ setopt vi
 setopt no_sh_word_split
 #setopt correct_all
 
-unset printexitvalue 
-unset bgnice 
-unset mailwarning 
-unset flow_control 
-unset rmstarsilent
+unsetopt printexitvalue 
+unsetopt bgnice 
+unsetopt mailwarning 
+unsetopt flow_control 
+unsetopt rmstarsilent
 # cdablevars will match for cd anything that fits the pattern at any
 # point in the absolute path to pwd.  So, if in $HOME, it will match
 # on /, /home, and /home/*/.  This is a performance nightmare
 # on corporate systems.
-unset cdablevars
+unsetopt cdablevars
 
-#unset correct_all
-#unset correct
+#unsetopt correct_all
+#unsetopt correct

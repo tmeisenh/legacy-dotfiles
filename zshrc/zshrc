@@ -70,12 +70,12 @@ export GIT_URL=tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/git
 bindkey -v        #vi key bindings
 
 # Set term if not set
-if [ "$TERM" = "" -o "$TERM" = "unknown" ]; then
-    $TERM="vt100"
-    if [ "`uname`" = "Linux" ]; then
-        $TERM="linux"
-    fi
-fi
+#if [ "$TERM" = "" -o "$TERM" = "unknown" ]; then
+#    $TERM="vt100"
+#    if [ "`uname`" = "Linux" ]; then
+#        $TERM="linux"
+#    fi
+#fi
      
 # Set Logs and History
 watch=(notme root)
