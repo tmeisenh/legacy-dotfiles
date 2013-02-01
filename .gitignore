@@ -1,1 +1,6 @@
 *
+!bin/
+!bin-darwin/
+!bin-freebsd/
+!how-to/
+!.zsh-tbm/
