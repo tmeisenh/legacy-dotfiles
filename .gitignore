@@ -1,7 +1,7 @@
 /*
-!.gitignore
-!bin/*
-!bin-darwin/*
-!bin-freebsd/*
-!how-to/*
-!.zsh-tbm/*
+!/.gitignore
+!/bin/*
+!/bin-darwin/*
+!/bin-freebsd/*
+!/how-to/*
+!/.zsh-tbm/*
