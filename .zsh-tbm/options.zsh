@@ -42,6 +42,9 @@ setopt pushdignoredups
 setopt pushdminus 
 setopt pushdsilent
 
+#prompt
+setopt prompt_subst
+
 # Miscellaneous
 setopt notify 
 setopt autoresume 
