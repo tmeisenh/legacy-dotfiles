@@ -76,7 +76,7 @@ fi
 # Set display colors - This is a GNU coreutils ability only.  We use 
 # /etc/DIR_COLORS or our own, modified version which we store in ~.
 gdircolors &>/dev/null 2>&1 && alias dircolors="gdircolors" 
-[[ -f ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors` 
+[[ -e ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors` 
 
 # System wide aliases
 source $ZSHCONF/aliases.zsh
@@ -104,6 +104,10 @@ source $ZSHCONF/completions.zsh
 
 # Set envrionment stuff
 source $ZSHCONF/environment.zsh
+
+if [[ -s "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
+  source "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh"
+fi
 
 # Umask settings 
 # -rw-r--r--

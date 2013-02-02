@@ -149,13 +149,21 @@ function prompt_fix_black() {
 }
 
 # lowercases a string
+# accepts piped input
 function to_lower() {
-    echo $1 | tr "[:upper:]" "[:lower:]"
+  while read data 
+  do
+    echo $data | tr "[:upper:]" "[:lower:]"
+  done
 }
 
 # uppercases a string 
+# accepts piped input
 function to_upper() {
-    echo $1 | tr "[:lower:]" "[:upper:]"
+  while read data 
+  do
+    echo $data | tr "[:lower:]" "[:upper:]"
+  done
 }
 
 function unix_timestamp_to_date() {
