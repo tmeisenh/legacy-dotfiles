@@ -11,7 +11,7 @@ setenv() { export $1=$2 }  # csh compatibility
 
 # Usage: pskill <application/program name>
 # Description: kills a process
-pskill () { 
+function pskill () { 
     kill -9 $(ps ax | grep $1 | awk --posix '{ print $1 }')
     echo -n "Killed $1 process..."
 }
@@ -19,7 +19,7 @@ pskill () {
 # Usage: smartextract <file>
 # Description: extracts archived files
 # This uses the aliases defined above
-smartextract () {
+function smartextract () {
     if [ -f $1 ]; then
         case $1 in
             *.tar.bz2)
@@ -63,7 +63,7 @@ smartextract () {
 
 # Usage: show-archive <archive>
 # Description: view archive without unpack
-showarchive() {
+function showarchive() {
     if [[ -f $1 ]]; then
         case $1 in
             *.tar.gz)  
@@ -91,7 +91,7 @@ showarchive() {
 }
 
 
-normalize () {
+function normalize () {
     if [ -z $1 ]; then
         echo "Usage: normalize <file>";
     else    
@@ -110,7 +110,7 @@ normalize () {
 #
 # We set permissions as such because I had problems on my BSD box
 # We also rm -f to make sure the file gets deleted
-ssh-automate-login () {
+function ssh-automate-login () {
     echo "Checking to see if a public key exists."
 
     if [ ! -f .ssh/id_rsa ]; then
@@ -130,35 +130,39 @@ ssh-automate-login () {
 # alias b/c i'm old
 alias sshbless=ssh-automate-login
 
-create_remote_git() {
+function create_remote_git() {
     ssh $1 "mkdir -m 700 ~/git/$2.git && cd ~/git/$2.git && git --bare init"
 }
 
 # Generates a random password using apg.
-random_password() {
+function random_password() {
     echo "Here are ten random passwords for you.  Pick one, or run again. \n\n"
     apg -q -m 10 -x 10 -M NC -n 10 -t
 }
 
-prompt_fix_white() {
+function prompt_fix_white() {
     PROMPT="%{${fg_red}%}%n@%m %@ %{${fg_lblue}%}%1d %# %{${fg_white}%}"
 }
 
-prompt_fix_black() {
+function prompt_fix_black() {
     PROMPT="%{${fg_red}%}%n@%m %@ %{${fg_lblue}%}%1d %# %{${fg_black}%}"
 }
 
 # lowercases a string
-to_lower() {
+function to_lower() {
     echo $1 | tr "[:upper:]" "[:lower:]"
 }
 
 # uppercases a string 
-to_upper() {
+function to_upper() {
     echo $1 | tr "[:lower:]" "[:upper:]"
 }
 
-unix_timestamp_to_date() {
+function unix_timestamp_to_date() {
     perl -e "require 'ctime.pl'; print &ctime($1);"
+}
+
+function delete_dsstore() {
+  find $1 -name ".DS_Store" -depth -exec rm {} \;
 }
 
