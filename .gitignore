@@ -1,4 +1,6 @@
+# ignore everything at repo root...
 /*
+# then un-ignore this stuff...
 !/.gitignore
 !/bin/
 !/bin-darwin/
