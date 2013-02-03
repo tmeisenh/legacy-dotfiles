@@ -9,6 +9,7 @@
 
 # UN/SET OPTIONS grouped by action
 # man zshoptions for more information
+
 # Completion Options
 setopt alwaystoend 
 setopt alwayslastprompt 
@@ -41,6 +42,7 @@ setopt autopushd
 setopt pushdignoredups 
 setopt pushdminus 
 setopt pushdsilent
+setopt autocd
 
 #prompt
 setopt prompt_subst
