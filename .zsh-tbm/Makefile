@@ -1,7 +1,9 @@
+# Makefile, because I can.
+#
 update:
-	svn up
+	git fetch --all
 install: install-dotfiles
-uninstall: uninstall-dotfiles
+deinstall: uninstall-dotfiles
 
 install-dotfiles:
 	@echo "Installing ZSH..."
@@ -20,7 +22,7 @@ install-dotfiles:
 	@echo "DONE with install tasks."
 uninstall-dotfiles:
 	@echo "Uninstalling ZSH..."
-	rm -f  $(HOME)/.zshrc 
+	rm -f $(HOME)/.zshrc 
 	rm -f $(HOME)/.zlogout 
 	rm -f $(HOME)/.logout 
 	rm -f $(HOME)/.vimrc 
