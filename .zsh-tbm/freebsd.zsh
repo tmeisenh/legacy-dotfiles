@@ -8,6 +8,10 @@
 
 # NOTE: you will want to install ports/ports-mgmt/pkg
 
+# color man pages, whoa...
+VIM=/usr/local/share/vim/vim73
+export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
+
 # Hash common directories
 hash -d log=/var/log
 hash -d ports=/usr/ports

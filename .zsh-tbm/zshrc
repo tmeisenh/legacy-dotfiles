@@ -20,13 +20,13 @@ export LANG="en_US"
 export HOSTNAME=`/bin/hostname`
 export LC_ALL=POSIX
 export EDITOR='vim'
-export PAGER='less'
+export PAGER='/usr/local/bin/vimpager'
 export ZLS_COLORS=$LS_COLORS
 export ZSHDIR=$HOME/.zsh
 export ZSHCONF=$HOME/.zsh-tbm
 export SSHSOURCE=`echo $SSH_CONNECTION | awk '{print $1}'`
 export SVN_URL=svn+ssh://tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/svn
-export GIT_URL=tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/git
+export GIT_URL=ssh://tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/git
 bindkey -v        #vi key bindings
 
 # Set term if not set

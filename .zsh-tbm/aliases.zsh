@@ -7,6 +7,9 @@
 # Works on zsh versions > 4.0.9.
 #********************************************************************
 
+alias less="$PAGER"
+alias zless="$PAGER"
+
 alias -g L="|less"
 alias -g M="|more"
 alias -g G="|grep"
