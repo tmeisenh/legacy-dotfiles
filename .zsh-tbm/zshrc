@@ -97,6 +97,7 @@ limit core 0
 limit coredumpsize 0
 limit -s
 
+# load common shellfunctions
 source $ZSHCONF/shellfunctions.zsh
 
 # set command completions
@@ -105,8 +106,14 @@ source $ZSHCONF/completions.zsh
 # Set envrionment stuff
 source $ZSHCONF/environment.zsh
 
+# grab distro specific
 if [[ -s "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
   source "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh"
+fi
+
+# grab system specific
+if [[ -s "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
+  source "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh"
 fi
 
 # Umask settings 
