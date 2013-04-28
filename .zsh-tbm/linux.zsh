@@ -14,10 +14,15 @@ alias last_mod="ls --color -Flat -h -b -X -T 0"
 
 bindkey "^[OH" beginning-of-line       ## home
 bindkey "^[OF" end-of-line             ## end
+bindkey "^[OA" up-line-or-search       ## up arrow for back-history-search
+bindkey "^[OB" down-line-or-search     ## down arrow for fwd-history-search
 
 # color man pages, whoa...
 VIM=/usr/share/vim/vim73
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
+
+export ANDROID_HOME=/home/travis/android-sdk/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
 
 # Hash common directories
 hash -d log=/var/log

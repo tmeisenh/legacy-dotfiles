@@ -32,7 +32,7 @@ alias bz="tar -xvjf"
 alias ctar="tar -vzcf"
 alias utar="tar -xvzf"
 alias ltar="tar -vztf"
-alias cp="nocorrect gcp"
+alias cp="nocorrect cp"
 
 alias grep="grep -Hn"
 
