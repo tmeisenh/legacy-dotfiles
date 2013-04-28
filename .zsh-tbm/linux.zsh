@@ -21,12 +21,22 @@ bindkey "^[OB" down-line-or-search     ## down arrow for fwd-history-search
 VIM=/usr/share/vim/vim73
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
 
-export ANDROID_HOME=/home/travis/android-sdk/sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
-
 # Hash common directories
 hash -d log=/var/log
 
 function search_apt() {
  apt-cache search "${1}"
 }
+
+#********************************************************************
+# environment stuff
+#********************************************************************
+
+export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-amd64
+export M2_HOME=/usr/share/maven
+export ANT_HOME=/usr/local/share/java/apache-ant
+export GRADLE_HOME=/usr/local/gradle-1.2
+export ANDROID_HOME=/home/travis/android-sdk/sdk
+export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin: \
+        $HOME/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools: \
+        $PATH

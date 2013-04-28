@@ -3,7 +3,7 @@
 # Z shell configuration file
 #
 # Author: Travis Meisenheimer <travis@indexoutofbounds.com>
-#
+# Note: Some aliases are specifically FreeBSD or "non linux"
 # Works on zsh versions > 4.0.9.
 #********************************************************************
 
