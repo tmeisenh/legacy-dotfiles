@@ -5,7 +5,6 @@
 # Author: Travis Meisenheimer <travis@indexoutofbounds.com>
 #
 #********************************************************************
-
 export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-amd64
 export M2_HOME=/usr/share/maven
 #export ANT_HOME=/usr/local/share/java/apache-ant
