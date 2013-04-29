@@ -42,7 +42,7 @@ set winminheight=0      " Allow windows to shrink to status line.
 set winminwidth=0       " Allow windows to shrink to vertical separator.
 
 set lbr                 " Wrap line on word boundaries
-set wrap
+set nowrap
 
 set expandtab           " Insert spaces for <Tab> press; use spaces to indent.
 set smarttab            " Tab respects 'shiftwidth', 'tabstop', 'softtabstop'.
