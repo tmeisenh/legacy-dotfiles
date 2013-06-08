@@ -2,6 +2,7 @@
 /*
 # then un-ignore this stuff...
 !/.gitignore
+!/.gitconfig
 !/bin/
 !/bin-darwin/
 !/bin-freebsd/
