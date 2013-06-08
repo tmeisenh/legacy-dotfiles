@@ -75,8 +75,8 @@ set backspace=indent,eol,start
 
 set whichwrap+=<,>,[,]
 
-set listchars=tab:>-,trail:·
-set list
+"set listchars=tab:>-,trail:·
+"set list
 
 " Update the swap file every 20 characters. I don't like to lose stuff.
 "
