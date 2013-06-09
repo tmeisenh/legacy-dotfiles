@@ -17,7 +17,7 @@ bindkey "^[OB" down-line-or-search     ## down arrow for fwd-history-search
 
 # color man pages, whoa...
 VIM=/usr/share/vim/vim73
-export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
+#export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
 
 # Hash common directories
 hash -d log=/var/log
