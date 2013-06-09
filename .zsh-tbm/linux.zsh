@@ -35,6 +35,6 @@ function search_apt() {
 export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-amd64
 export M2_HOME=/usr/share/maven
 export ANT_HOME=/usr/local/share/java/apache-ant
-export GRADLE_HOME=/usr/local/gradle-1.2
+export GRADLE_HOME=/usr/local/gradle-1.3
 export ANDROID_HOME=/home/travis/android-sdk/sdk
 export PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin:$HOME/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
