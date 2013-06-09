@@ -45,5 +45,3 @@ function prompt_tmeisenh_setup {
 }
 
 prompt_tmeisenh_setup "$@"
-
-

@@ -1,5 +1,3 @@
-# $Id$
-#
 # Z shell configuration file
 #
 # Author: Travis Meisenheimer <travis@indexoutofbounds.com>
@@ -9,7 +7,6 @@
 # A lot of things here may be Apple OS X specific and also specific to using
 # Darwin Ports for OS X (www.darwinports.org)
 #********************************************************************
-
 
 # System  specific environment variables and settings
 VIM=/opt/local/share/vim/vim72
@@ -39,4 +36,3 @@ diskeject () {
 }
 
 # End
-

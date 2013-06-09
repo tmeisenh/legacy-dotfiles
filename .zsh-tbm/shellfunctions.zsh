@@ -1,5 +1,3 @@
-# $Id$
-#
 # Z shell configuration file
 #
 # Author: Travis Meisenheimer <travis@indexoutofbounds.com>
@@ -176,4 +174,3 @@ function unix_timestamp_to_date() {
 function delete_dsstore() {
   find $1 -name ".DS_Store" -depth -exec rm {} \;
 }
-
