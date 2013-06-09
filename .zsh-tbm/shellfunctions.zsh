@@ -133,8 +133,9 @@ function create_remote_git() {
 }
 
 function update_iob.com {
-    ssh tmeisenh@dev.indexoutofbounds.com ~/install_site.sh
+    ssh tmeisenh@dev.indexoutofbounds.com /home/tmeisenh/install_site.sh
 }
+
 # Generates a random password using apg.
 function random_password() {
     echo "Here are ten random passwords for you.  Pick one, or run again. \n\n"
