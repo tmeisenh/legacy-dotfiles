@@ -42,6 +42,7 @@
     oneline = log --oneline
     patch = log -p --no-walk # generate patch file from a commit.
     pick = cherry-pick
+    pov = pull -v origin
     prune = remote prune
     prune-all = !git remote | xargs -n 1 git remote prune
     qstat = status --untracked-files=no
