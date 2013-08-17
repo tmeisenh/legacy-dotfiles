@@ -1,14 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 #TOP="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP="$(pwd)"
-DEST=/tmp/shit
+DEST=$HOME
 
 install-dotfiles() {
 	echo "Installing ZSH..."
 	echo "Backing up your .zshrc if neccessary..."
 	!(ls ${DEST}/.zshrc > /dev/null 2> /dev/null) || mv ${DEST}/.zshrc ${DEST}/zshrc.bak 
+  ls -s ${TOP}/zsh ${DEST}/zsh
 	ln -s ${TOP}/zsh/zshrc ${DEST}/.zshrc 
+  mkdir ${DEST}/.zsh-cache
 
 	echo "setting links to other dot files..."
 	ln -s ${TOP}/zlogout ${DEST}/.zlogout 
@@ -36,16 +38,22 @@ install-dotfiles() {
   
 
 uninstall-dotfiles() {
-	echo "Uninstalling zsh, vim, and everything else..."
-	rm -f ${DEST}/.zshrc 
-	rm -f ${DEST}/.zlogout 
-	rm -f ${DEST}/.logout 
-	rm -f ${DEST}/.vimrc 
-	rm -f ${DEST}/.dir_colors
-	rm -f ${DEST}/.zshrc
-	rm -rf ${DEST}/bin
-	rm -rf ${DEST}/bin-freebsd
-	rm -rf ${DEST}/bin-darwin
+ rm_cmd="/bin/rm"
+	echo "Uninstalling zsh, vim, and everything else from ${DEST}..."
+	$rm_cmd -vf ${DEST}/.zshrc 
+	$rm_cmd -vf ${DEST}/.zlogout 
+	$rm_cmd -vf ${DEST}/.logout 
+	$rm_cmd -vf ${DEST}/.vimrc 
+	$rm_cmd -vf ${DEST}/vim
+	$rm_cmd -vf ${DEST}/.dir_colors
+	$rm_cmd -vf ${DEST}/zsh
+	$rm_cmd -vrf ${DEST}/.zsh-cache
+	$rm_cmd -vf ${DEST}/.zshrc
+
+	$rm_cmd -vrf ${DEST}/bin
+	$rm_cmd -vrf ${DEST}/bin-freebsd
+	$rm_cmd -vrf ${DEST}/bin-darwin
 }
 
-install-dotfiles
+uninstall-dotfiles
+#install-dotfiles
