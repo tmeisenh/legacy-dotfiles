@@ -2,6 +2,8 @@ dotfiles
 ========
 My $HOME.  Probably of no use to anyone else but this works for me.  I tried OMZ and zprezto but I guess I'm too much of a crusty unix guy b/c I just like my old stuff.
 
+I started out in GNU/Linux but migrated to FreeBSD years ago.  That explains why my defaults are for FreeBSD with dependencies on GNU core-utils.
+
 To install, just clone the repo and execute the install.sh script.
 
 USB ssh stick
