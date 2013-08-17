@@ -8,7 +8,7 @@ install-dotfiles() {
 	echo "Installing ZSH..."
 	echo "Backing up your .zshrc if neccessary..."
 	!(ls ${DEST}/.zshrc > /dev/null 2> /dev/null) || mv ${DEST}/.zshrc ${DEST}/zshrc.bak 
-  ln -s ${TOP}/zsh ${DEST}/zsh
+  ln -s ${TOP}/zsh ${DEST}/.zsh-tmeisenh-dotfiles
 	ln -s ${TOP}/zsh/zshrc ${DEST}/.zshrc 
   mkdir ${DEST}/.zsh-cache
 
@@ -23,8 +23,10 @@ install-dotfiles() {
 	ln -s ${TOP}/vim ${DEST}/.vim 
 	ln -s ${TOP}/vimrc ${DEST}/.vimrc 
 
+  echo "setting up info/doc directories..."
+	ln -s ${TOP}/how-to/ ${DEST}/
+  
   echo "setting up bin directories..."
-	#mkdir -p ${DEST}/bin
 	ln -s ${TOP}/bin/ ${DEST}/
 	ln -s ${TOP}/bin-freebsd ${DEST}/
 	ln -s ${TOP}/bin-darwin ${DEST}/
@@ -42,7 +44,7 @@ uninstall-dotfiles() {
 	echo "Uninstalling zsh, vim, and everything else from ${DEST}..."
 	$rm_cmd -vf ${DEST}/.zshrc 
 	$rm_cmd -vf ${DEST}/.zlogout 
-	$rm_cmd -vf ${DEST}/zsh
+	$rm_cmd -vf ${DEST}/.zsh-tmeisenh-dotfiles
 	$rm_cmd -vf ${DEST}/.zprofile
 	$rm_cmd -vrf ${DEST}/.zsh-cache
 	$rm_cmd -vrf ${DEST}/.zcompdump
@@ -57,6 +59,7 @@ uninstall-dotfiles() {
 	$rm_cmd -vrf ${DEST}/bin
 	$rm_cmd -vrf ${DEST}/bin-freebsd
 	$rm_cmd -vrf ${DEST}/bin-darwin
+	$rm_cmd -vrf ${DEST}/how-to
 }
 
 uninstall-dotfiles

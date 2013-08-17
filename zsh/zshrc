@@ -23,7 +23,7 @@ export EDITOR='vim'
 export PAGER='/usr/local/bin/vimpager'
 export ZLS_COLORS=$LS_COLORS
 export ZSHCACHEDIR=$HOME/.zsh-cache
-export ZSHCONF=$HOME/zsh
+export ZSHCONF=$HOME/.zsh-tmeisenh-dotfiles
 export SSHSOURCE=`echo $SSH_CONNECTION | awk '{print $1}'`
 bindkey -v        #vi key bindings
 
