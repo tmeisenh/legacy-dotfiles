@@ -29,7 +29,7 @@ Host baba
   IdentityFile .ssh/id_rsa
 ```
 
-$HOME/.ssh/config seems to be funky about spaces.  If the key file doesn't exist when you try to ssh it won't be used and the default (usually password) authentication scheme will be used.  You can also have multiple key files as the example above suggests.
+$HOME/.ssh/config seems to be funky about spaces.  The indention is exactly two (2) spaces.  If the key file doesn't exist when you try to ssh it won't be used and the default (usually password) authentication scheme will be used.  You can also have multiple key files as the example above suggests.
 
 Secondly you can set up github to use it.
 
