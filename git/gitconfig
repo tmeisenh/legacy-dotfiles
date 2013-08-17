@@ -50,6 +50,7 @@
     st = status
     staged = diff --staged
     stat = status
+    sub = submodule update --init --recursive
     svn-pull = !git svn fetch && git svn rebase
     svn-push = !git svn dcommit
     uncommit = reset --soft HEAD^
