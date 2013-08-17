@@ -42,7 +42,7 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
 # Completion caching
 zstyle ':completion:*' use-cache 1
-zstyle ':completion::complete:*' use-cache 1 cache-path $ZSHDIR/cache/
+zstyle ':completion::complete:*' use-cache 1 cache-path $ZSHCACHEDIR/cache/
 
 # Expand partial paths
 zstyle ':completion:*' expand 'yes'

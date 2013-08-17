@@ -1,4 +1,4 @@
-# Makefile, because I can.
+# Makefile
 #
 update:
 	git pull -v orgin master

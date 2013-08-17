@@ -22,11 +22,9 @@ export LC_ALL=POSIX
 export EDITOR='vim'
 export PAGER='/usr/local/bin/vimpager'
 export ZLS_COLORS=$LS_COLORS
-export ZSHDIR=$HOME/.zsh-cache
+export ZSHCACHEDIR=$HOME/.zsh-cache
 export ZSHCONF=$HOME/zsh
 export SSHSOURCE=`echo $SSH_CONNECTION | awk '{print $1}'`
-export SVN_URL=svn+ssh://tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/svn
-export GIT_URL=ssh://tmeisenh@dev.indexoutofbounds.com/home/tmeisenh/git
 bindkey -v        #vi key bindings
 
 # Set term if not set
@@ -78,18 +76,6 @@ fi
 gdircolors &>/dev/null 2>&1 && alias dircolors="gdircolors" 
 [[ -e ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors` 
 
-# System wide aliases
-source $ZSHCONF/aliases.zsh
-
-# Completion Options
-source $ZSHCONF/options.zsh
-
-source $ZSHCONF/prompt.zsh
-
-source $ZSHCONF/keys.zsh
-
-# Shell functions
-
 # Use hard limits, except for a smaller stack and no core dumps
 unlimit
 limit stack 8192
@@ -97,21 +83,33 @@ limit core 0
 limit coredumpsize 0
 limit -s
 
-# load common shellfunctions
-source $ZSHCONF/shellfunctions.zsh
+# Load system wide aliases
+source $ZSHCONF/aliases.zsh
 
-# set command completions
+# Load shell options
+source $ZSHCONF/options.zsh
+
+# Configure prompt to my specifications
+source $ZSHCONF/prompt.zsh
+
+# Congifure  keys working (never works by default)
+source $ZSHCONF/keys.zsh
+
+# Load command completions
 source $ZSHCONF/completions.zsh
 
-# Set envrionment stuff
+# Load common shellfunctions
+source $ZSHCONF/shellfunctions.zsh
+
+# Load various envrionment settings
 source $ZSHCONF/environment.zsh
 
-# grab distro specific
+# Load distro specific settings (darwin, freebsd, linux, etc)
 if [[ -s "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
   source "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh"
 fi
 
-# grab system specific
+# Load system specific settings (box1, box2, etc)
 if [[ -s "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
   source "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh"
 fi
