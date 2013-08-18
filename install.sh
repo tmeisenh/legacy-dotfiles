@@ -25,12 +25,12 @@ install-dotfiles() {
 	$cp_cmd -a ${SRC}/vimrc ${DEST}/.vimrc 
 
   echo "setting up info/doc directories..."
-	$cp_cmd -a ${SRC}/how-to/ ${DEST}/
+	$cp_cmd -a ${SRC}/how-to/ ${DEST}/how-to
   
   echo "setting up bin directories..."
-	$cp_cmd -a ${SRC}/bin/ ${DEST}/
-	$cp_cmd -a ${SRC}/bin-freebsd ${DEST}/
-	$cp_cmd -a ${SRC}/bin-darwin ${DEST}/
+	$cp_cmd -a ${SRC}/bin/ ${DEST}/bin
+	$cp_cmd -a ${SRC}/bin-freebsd ${DEST}/bin-freebsd
+	$cp_cmd -a ${SRC}/bin-darwin ${DEST}/bin-darwin
 
   echo "setting up git..."
   $cp_cmd -a ${SRC}/git/gitconfig ${DEST}/.gitconfig
