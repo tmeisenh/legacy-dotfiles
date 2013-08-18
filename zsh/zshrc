@@ -104,6 +104,9 @@ source $ZSHCONF/shellfunctions.zsh
 # Load various envrionment settings
 source $ZSHCONF/environment.zsh
 
+# Load private (not stored in git) settings
+source $ZSHCONF/private.zsh
+
 # Load distro specific settings (darwin, freebsd, linux, etc)
 if [[ -s "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
   source "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh"
