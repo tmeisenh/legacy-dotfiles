@@ -35,6 +35,9 @@ install-dotfiles() {
 	!(ls ${DEST}/.gitconfig > /dev/null 2> /dev/null) || mv ${DEST}/.gitconfig ${DEST}/gitconfig.bak
   ln -s ${TOP}/git/gitconfig ${DEST}/.gitconfig
  
+  echo "setting --assume-unchanged on private.zsh" 
+  git update-index --assume-unchanged ${TOP}/zsh/private.zsh
+ 
 	echo "DONE with install tasks."
 }
   
