@@ -1,40 +1,45 @@
 #!/bin/bash
+#
+# For FreeBSD systems, you'll need to manually invoke bash to run
+# this script since /bin/bash isn't a valid shell.
+# /usr/local/bin/bash ./install.sh
 
 SRC="$(pwd)"
 DEST=$HOME
 
+cp_cmd="/bin/cp"
+rm_cmd="/bin/rm"
 install-dotfiles() {
 	echo "Installing tmeisenh dotfiles..."
-  cp -rp ${SRC}/zsh ${DEST}/.zsh-tmeisenh-dotfiles
-	cp -rp ${SRC}/zsh/zshrc ${DEST}/.zshrc 
+  $cp_cmd -a ${SRC}/zsh ${DEST}/.zsh-tmeisenh-dotfiles
+	$cp_cmd -a ${SRC}/zsh/zshrc ${DEST}/.zshrc 
   mkdir ${DEST}/.zsh-cache
 
 	echo "setting links to other dot files..."
-	cp -rp ${SRC}/zlogout ${DEST}/.zlogout 
-	cp -rp ${SRC}/logout ${DEST}/.logout 
-	cp -rp ${SRC}/LS_COLORS ${DEST}/.dir_colors
+	$cp_cmd -a ${SRC}/zlogout ${DEST}/.zlogout 
+	$cp_cmd -a ${SRC}/logout ${DEST}/.logout 
+	$cp_cmd -a ${SRC}/LS_COLORS ${DEST}/.dir_colors
 
 	echo "setting up vim..."
-	cp -rp ${SRC}/vim ${DEST}/.vim 
-	cp -rp ${SRC}/vimrc ${DEST}/.vimrc 
+	$cp_cmd -a ${SRC}/vim ${DEST}/.vim 
+	$cp_cmd -a ${SRC}/vimrc ${DEST}/.vimrc 
 
   echo "setting up info/doc directories..."
-	cp -rp ${SRC}/how-to/ ${DEST}/
+	$cp_cmd -a ${SRC}/how-to/ ${DEST}/
   
   echo "setting up bin directories..."
-	cp -rp ${SRC}/bin/ ${DEST}/
-	cp -rp ${SRC}/bin-freebsd ${DEST}/
-	cp -rp ${SRC}/bin-darwin ${DEST}/
+	$cp_cmd -a ${SRC}/bin/ ${DEST}/
+	$cp_cmd -a ${SRC}/bin-freebsd ${DEST}/
+	$cp_cmd -a ${SRC}/bin-darwin ${DEST}/
 
   echo "setting up git..."
-  cp -rp ${SRC}/git/gitconfig ${DEST}/.gitconfig
+  $cp_cmd -a ${SRC}/git/gitconfig ${DEST}/.gitconfig
  
 	echo "DONE with install tasks."
 }
   
 
 uninstall-dotfiles() {
-  rm_cmd="/bin/rm"
 	echo "Uninstalling zsh, vim, and everything else from ${DEST}..."
 	$rm_cmd -f ${DEST}/.zshrc 
 	$rm_cmd -f ${DEST}/.zlogout 
@@ -47,7 +52,7 @@ uninstall-dotfiles() {
 
 	$rm_cmd -f ${DEST}/.vimrc 
 	$rm_cmd -f ${DEST}/.viminfo 
-	$rm_cmd -f ${DEST}/vim
+	$rm_cmd -rf ${DEST}/.vim
 	$rm_cmd -f ${DEST}/.dir_colors
 
 	$rm_cmd -rf ${DEST}/bin
