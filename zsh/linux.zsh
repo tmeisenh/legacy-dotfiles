@@ -30,7 +30,7 @@ function search_apt() {
 # environment stuff
 #********************************************************************
 
-export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-6-oracle
 export M2_HOME=/usr/share/maven
 export ANT_HOME=/usr/local/share/java/apache-ant
 export GRADLE_HOME=/usr/local/gradle-1.3
