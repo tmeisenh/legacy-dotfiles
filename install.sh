@@ -9,9 +9,15 @@ DEST=$HOME
 
 cp_cmd="/bin/cp"
 rm_cmd="/bin/rm"
+mv_cmd="/bin/mv"
+
 install-dotfiles() {
 	echo "Installing tmeisenh dotfiles..."
   $cp_cmd -a ${SRC}/zsh ${DEST}/.zsh-tmeisenh-dotfiles
+
+  !(ls $HOME/private.zsh > /dev/null 2> /dev/null) || $mv_cmd  -v $HOME/private.zsh ${DEST}/.zsh-tmeisenh-dotfiles/private.zsh
+
+
 	$cp_cmd -a ${SRC}/zsh/zshrc ${DEST}/.zshrc 
   mkdir ${DEST}/.zsh-cache
 
@@ -25,7 +31,8 @@ install-dotfiles() {
   
 
 uninstall-dotfiles() {
-	echo "Uninstalling zsh, vim, and everything else from ${DEST}..."
+	echo "Uninstalling zsh from ${DEST}..."
+  $mv_cmd ${DEST}/.zsh-tmeisenh-dotfiles/private.zsh $HOME/private.zsh
 	$rm_cmd -f ${DEST}/.zshrc 
 	$rm_cmd -f ${DEST}/.zlogout 
 	$rm_cmd -rf ${DEST}/.zsh-tmeisenh-dotfiles
@@ -34,6 +41,8 @@ uninstall-dotfiles() {
 	$rm_cmd -rf ${DEST}/.zcompdump
 
 	$rm_cmd -f ${DEST}/.logout 
+
+  echo "Manualy remove $HOME/private.zsh if you didn't alter it."
 }
 
 uninstall-dotfiles
