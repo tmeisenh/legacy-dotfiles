@@ -2,6 +2,9 @@
 #
 # Author: Travis Meisenheimer <travis@indexoutofbounds.com>
 # FreeBSD-related  setups
+# Note: Most of these functions aren't really true functions.
+# They're more like "places where I can put things so I can remember
+# terse commands"
 #********************************************************************
 
 # NOTE: you will want to install ports/ports-mgmt/pkg
@@ -22,14 +25,14 @@ function list_installed_ports() {
   pkg_info
 }
 
-# update_ports_tree<>
+# update_ports_tree
 # requires root/sudo access
 function update_ports_tree() {
   echo "Updating /usr/ports ..."
   sudo portsnap fetch update
 }
 
-# update_src_tree <>
+# update_src_tree
 # requires root/sudo access
 function update_src_tree() {
   echo "Updating /usr/src ..."
@@ -55,6 +58,22 @@ function find_unmaintained_ports() {
   sh -c 'cd /usr/ports; grep -F "`for o in \`pkg_info -qao\` ; \
   do echo "|/usr/ports/${o}|" ; done`" `make -V INDEXFILE` | \
   grep -i \|ports@freebsd.org\| | cut -f 2 -d \| '
+}
+
+# FreeBSD won't mount the usbstick if it is not clean.
+# depends on /usr/ports/sysutils/e2fsprogs
+function clean_ext2fs_usbstick {
+  sudo fsck -t ext2fs /dev/da0s1
+}
+
+# mount usbstick to common place
+function mount_ext2fs_usbstick {
+  sudo mount -t ext2fs /dev/da0s1 /mnt/usb
+}
+
+# unmount usbstick from common place
+function unmount_ext2fs_usbstick {
+  sudo umount /mnt/usb
 }
 
 #********************************************************************
