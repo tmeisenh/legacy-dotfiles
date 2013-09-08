@@ -1,3 +1,0 @@
-The -S switch tells the gcc to emit assembly code
- 
-gcc41 -o2 -S -c fork.c

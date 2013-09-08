@@ -1,1 +1,0 @@
-sudo -u boinc boinc_cmd --project_attach http://setiathome.berkeley.edu 8770774b673211d2a19a29fd448c0944

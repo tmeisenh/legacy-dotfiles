@@ -20,21 +20,6 @@ install-dotfiles() {
 	$cp_cmd -a ${SRC}/logout ${DEST}/.logout 
 	$cp_cmd -a ${SRC}/LS_COLORS ${DEST}/.dir_colors
 
-	echo "setting up vim..."
-	$cp_cmd -a ${SRC}/vim ${DEST}/.vim 
-	$cp_cmd -a ${SRC}/vimrc ${DEST}/.vimrc 
-
-  echo "setting up info/doc directories..."
-	$cp_cmd -a ${SRC}/how-to/ ${DEST}/how-to
-  
-  echo "setting up bin directories..."
-	$cp_cmd -a ${SRC}/bin/ ${DEST}/bin
-	$cp_cmd -a ${SRC}/bin-freebsd ${DEST}/bin-freebsd
-	$cp_cmd -a ${SRC}/bin-darwin ${DEST}/bin-darwin
-
-  echo "setting up git..."
-  $cp_cmd -a ${SRC}/git/gitconfig ${DEST}/.gitconfig
- 
 	echo "DONE with install tasks."
 }
   
@@ -49,16 +34,6 @@ uninstall-dotfiles() {
 	$rm_cmd -rf ${DEST}/.zcompdump
 
 	$rm_cmd -f ${DEST}/.logout 
-
-	$rm_cmd -f ${DEST}/.vimrc 
-	$rm_cmd -f ${DEST}/.viminfo 
-	$rm_cmd -rf ${DEST}/.vim
-	$rm_cmd -f ${DEST}/.dir_colors
-
-	$rm_cmd -rf ${DEST}/bin
-	$rm_cmd -rf ${DEST}/bin-freebsd
-	$rm_cmd -rf ${DEST}/bin-darwin
-	$rm_cmd -rf ${DEST}/how-to
 }
 
 uninstall-dotfiles

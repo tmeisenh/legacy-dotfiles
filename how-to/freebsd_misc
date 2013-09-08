@@ -1,6 +1,0 @@
-edit /etc/mail/alias
-add "root: travis" near the top to alias root's email.
-run newaliases next.
-
-~/bin-grendel/secure_freebsd.sh
-http://www.bsdguides.org/guides/freebsd/security/harden.php

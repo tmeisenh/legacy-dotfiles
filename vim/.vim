@@ -1,1 +1,0 @@
-/home/travis/git/dotfiles/vim

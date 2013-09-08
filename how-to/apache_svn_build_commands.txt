@@ -1,6 +1,0 @@
-Apache 2.2
-(You can't build against ports/openssl)
-sudo make -DWITH_BERKELEYDB=(db4|db41|db42) -DWITH_SSL_MODULES -DWITH_DAV_MODULES
-
-Subversion
-sudo make -DWITH_MOD_DAV_SVN -DWITHOUT_BDB

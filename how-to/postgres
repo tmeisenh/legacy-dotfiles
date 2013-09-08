@@ -1,3 +1,0 @@
-    ./postmaster -D /opt/local/var/db/pgsql8/data
-or
-    ./pg_ctl -D /opt/local/var/db/pgsql8/data -l logfile start
