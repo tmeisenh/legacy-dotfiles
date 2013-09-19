@@ -16,9 +16,9 @@ fi
 path=($path $HOME/bin)
 [[ -d $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"` ]] && path=($path $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"`)
 export USER=`id -un`
-export LANG="en_US"
 export HOSTNAME=`/bin/hostname`
-export LC_ALL=POSIX
+export LC_ALL=en_US.utf-8
+export LANG=${LC_ALL}
 export EDITOR='vim'
 export PAGER='/usr/local/bin/vimpager'
 export ZLS_COLORS=$LS_COLORS
