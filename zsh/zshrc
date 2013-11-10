@@ -92,7 +92,7 @@ source $ZSHCONF/options.zsh
 # Configure prompt to my specifications
 source $ZSHCONF/prompt.zsh
 
-# Congifure  keys working (never works by default)
+# Configure keys working (never works by default)
 source $ZSHCONF/keys.zsh
 
 # Load command completions
