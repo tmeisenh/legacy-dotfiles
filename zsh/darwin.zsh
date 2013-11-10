@@ -26,8 +26,6 @@ fi
 hash -d log=/var/log
 hash -d ports=/opt/local/var/macports/sources/rsync.macports.org/release/ports
 
-export WORK_PC=2UA6240G29.devsub.dev.dce.usps.gov
-
 # Usage: diskeject drive_number
 # Description: kills a process
 diskeject () { 
