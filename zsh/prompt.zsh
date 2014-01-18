@@ -43,7 +43,7 @@ function prompt_tmeisenh_setup {
   zstyle ':vcs_info:*' formats "(%b %u%c)"
   zstyle ':vcs_info:*' nvcsformats ""
 
-  PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %@ ${vcs_info_msg_0_} %{$fg_bold[blue]%}%1d $(prompt_char)%{$reset_color%} '
+  PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %@ %{$fg_bold[yellow]%}${vcs_info_msg_0_} %{$fg_bold[blue]%}%1d $(prompt_char)%{$reset_color%} '
 }
 
 prompt_tmeisenh_setup "$@"
