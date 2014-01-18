@@ -30,5 +30,3 @@ bindkey '^E' end-of-line
 bindkey '^W' complete-word
 bindkey '^L' clear-screen
 bindkey '^R' history-incremental-search-backward
-bindkey '\e[1~' beginning-of-line    
-bindkey '\e[4~' end-of-line
