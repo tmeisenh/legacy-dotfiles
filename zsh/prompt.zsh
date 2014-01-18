@@ -33,6 +33,8 @@ function prompt_tmeisenh_setup {
   add-zsh-hook precmd prompt_tmeisenh_precmd
   add-zsh-hook preexec prompt_tmeisenh_preexec 
   # Set vcs_info parameters.
+  # check-for-changes (disabled by default) can be slow.
+  # For actionformats/formats: http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information
   zstyle ':vcs_info:*' enable git svn
   zstyle ':vcs_info:*' check-for-changes true
   zstyle ':vcs_info:*' unstagedstr '!'
