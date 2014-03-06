@@ -34,6 +34,6 @@ export JAVA_HOME=/usr/lib/jvm/java-6-oracle
 export IDEA_JDK=$JAVA_HOME
 export M3_HOME=/usr/local/apache-maven
 export ANT_HOME=/usr/local/share/java/apache-ant
-export GRADLE_HOME=/usr/local/gradle-1.3
+export GRADLE_HOME=/usr/local/gradle
 export ANDROID_HOME=~/android-sdk/sdk
 export PATH=$PATH:$JAVA_HOME/bin:$M3_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin:$HOME/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
