@@ -19,12 +19,7 @@ alias -g SL="|sort | less"
 alias -g S="|sort"
 alias -g C="|wc -l"
 
-# set ls based on core-utils
-gls &>/dev/null 2>&1 && alias ls="gls --color -F -T 0 -b -h -X" || alias ls="ls -F -T -b -h -C -G"
-gls &>/dev/null 2>&1 && alias lsd="gls --color -d -T 0 -b -h -X *(-/DN)" || alias lsd="ls -d -T -b -h -C *(-/DN)"
-gls &>/dev/null 2>&1 && alias llsd="gls --color -ld -T 0 -b -h -X *(-/DN)" || alias llsd="ls -ld -T  -b -h -C *(-/DN)"
-gls &>/dev/null 2>&1 && alias lsa="gls --color -ld -h -X -b -T 0 .*" || alias lsa="ls -ld -h -C -b -T .*"
-gls &>/dev/null 2>&1 && alias last_mod="gls --color -Flat -h -b -X -T 0" || alias last_mod="ls -Flat -h -b -C -T"
+ls --color -d . &>/dev/null 2>&1 && alias ls="ls --color -F -T 0 -b -h -X" || alias ls="ls -F -T -h -C"
 
 alias bz="tar -xvjf"
 alias ctar="tar -vzcf"
