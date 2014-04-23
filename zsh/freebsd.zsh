@@ -8,6 +8,9 @@
 #********************************************************************
 
 # NOTE: you will want to install ports/ports-mgmt/pkg
+# NOTE: you will want to install ports/sysutils/coreutils
+
+alias ls="gls --color -F -T 0 -b -h -H -X"
 
 # color man pages, whoa...
 VIM=/usr/local/share/vim/vim73
