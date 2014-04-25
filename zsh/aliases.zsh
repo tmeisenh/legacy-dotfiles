@@ -54,6 +54,5 @@ alias svi="sudo vim -X"
 alias kill="kill -9"
 alias readrc="$PAGER ~/.zshrc"
 alias dtsp="date +%F"
+alias mvim="gvim"
 
-alias push="git push --all"
-alias branches="git branch -a"
