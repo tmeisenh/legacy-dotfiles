@@ -26,6 +26,20 @@ function search_apt() {
  apt-cache search "${1}"
 }
 
+function clean_ext2fs_usbstick {
+  sudo fsck -t ext2 /dev/sdb1
+}
+
+# mount usbstick to common place
+function mount_ext2fs_usbstick {
+  sudo mount -t ext2 /dev/sdb1 /mnt/usb
+}
+
+# unmount usbstick from common place
+function unmount_ext2fs_usbstick {
+  sudo umount /mnt/usb
+}
+
 #********************************************************************
 # environment stuff
 #********************************************************************
