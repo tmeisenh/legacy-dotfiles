@@ -179,3 +179,8 @@ function unix_timestamp_to_date() {
 function delete_dsstore() {
   find $1 -name ".DS_Store" -depth -exec rm {} \;
 }
+
+function import_gpg_keys_from_usb() {
+  find /mnt/usb/gnugpg -type f -name '*_pub.gpg' -exec gpg --import '{}' \;
+  find /mnt/usb/gnugpg -type f -name '*_sec.gpg' -exec gpg --allow-secret-key-import --import '{}' \;
+}
