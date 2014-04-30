@@ -9,6 +9,8 @@ alias lsd="ls --color -d -T 0 -b -h -H -X *(-/DN)"
 alias llsd="ls --color -ld -T 0 -b -h -H -X *(-/DN)"
 alias lsa="ls --color -ld -h -H -X -b -T 0 .*"
 alias last_mod="ls --color -Flat -h -H -b -X -T 0"
+alias xcopy="xclip"
+alias pbcopy="xclip"
 
 bindkey "^[OH" beginning-of-line       ## home
 bindkey "^[OF" end-of-line             ## end
