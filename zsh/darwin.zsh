@@ -9,22 +9,19 @@
 #********************************************************************
 
 # System  specific environment variables and settings
-VIM=/opt/local/share/vim/vim72
+VIM=/usr/local/share/vim/vim74
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
 
 export VIM
 
 
-# Darwin ports path additions
-# Append the Darwin Ports stuff to the front of the path. 
-if [ -f /opt/local/bin/port ]; then
-    PATH=/opt/local/bin:/opt/local/sbin:$PATH
-    MANPATH=/opt/share/man:$MANPATH
+# homebrew manpath additions
+if [ -f /usr/local/opt/coreutils/libexec/gnubin ]; then
+    MANPATH=/usr/local/opt/coreutils/libexec/gnubin:$MANPATH
 fi
 
 # Hash common directories
 hash -d log=/var/log
-hash -d ports=/opt/local/var/macports/sources/rsync.macports.org/release/ports
 
 # Usage: diskeject drive_number
 # Description: kills a process
