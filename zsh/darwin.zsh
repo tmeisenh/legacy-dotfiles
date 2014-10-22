@@ -4,11 +4,13 @@
 #
 # Works on zsh versions > 4.0.9.
 #
-# A lot of things here may be Apple OS X specific and also specific to using
-# Darwin Ports for OS X (www.darwinports.org)
+# Apple Mac OS X related zsh aliases, functions, and settings.
 #********************************************************************
 
 # System  specific environment variables and settings
+bindkey "^[[H" beginning-of-line       ## home
+bindkey "^[[F" end-of-line             ## end
+
 export VIM=/usr/local/share/vim/vim74
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
 
@@ -26,5 +28,11 @@ diskeject () {
     echo -n "unmounting drive $1..."
     drutil tray eject -drive $1
 }
+
+#********************************************************************
+# environment stuff
+#********************************************************************
+
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 # End
