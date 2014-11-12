@@ -13,6 +13,7 @@ bindkey "^[[F" end-of-line             ## end
 
 export VIM=/usr/local/share/vim/vim74
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
+export GIT_PAGER='less'
 
 # homebrew manpath additions
 if [ -f /usr/local/opt/coreutils/libexec/gnubin ]; then
