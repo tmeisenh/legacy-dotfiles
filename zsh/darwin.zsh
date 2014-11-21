@@ -15,6 +15,10 @@ export VIM=/usr/local/share/vim/vim74
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
 export GIT_PAGER='less'
 
+# xcode alias and completion
+alias xcode="open -a Xcode"
+compctl -g '*.(xcworkspace|xcodeproj)' xcode
+
 # homebrew manpath additions
 if [ -f /usr/local/opt/coreutils/libexec/gnubin ]; then
     MANPATH=/usr/local/opt/coreutils/libexec/gnubin:$MANPATH
