@@ -10,8 +10,8 @@ setenv() { export $1=$2 }  # csh compatibility
 # Usage: pskill <application/program name>
 # Description: kills a process
 function pskill () { 
-    kill -9 $(ps ax | grep $1 | awk --posix '{ print $1 }')
-    echo -n "Killed $1 process..."
+    GREP=/usr/bin/grep
+    kill -9 `ps ax | $GREP $1 | $GREP -v grep | awk --posix '{ print $1 }'`
 }
 
 # Usage: smartextract <file>
