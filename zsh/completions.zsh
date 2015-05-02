@@ -11,6 +11,9 @@ zle -C complete complete-word complete-files
 # Pretty menu!
 zstyle ':completion:*' menu select=1
 
+# Case insensitive matching
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 # Completion options
 zstyle ':completion:*' completer _complete _prefix _expand _approximate _correct
 zstyle ':completion:*:expand:*' tag-order all-expansions
@@ -18,7 +21,7 @@ zstyle ':completion::prefix-1:*' completer _complete
 zstyle ':completion:incremental:*' completer _complete _correct
 zstyle ':completion:predict:*' completer _complete
 zstyle ':completion:::::' completer _complete _correct
-zstyle ':completion:*:processes' command 'ps -au$USER'
+zstyle ':completion:*:processes' command 'ps -au $USER'
 zstyle ':completion:*' verbose yes 
 zstyle ':completion:*:descriptions' format '%d completing %d'
 zstyle ':completion:*:options' description 'yes'
@@ -42,7 +45,7 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
 # Completion caching
 zstyle ':completion:*' use-cache 1
-zstyle ':completion::complete:*' use-cache 1 cache-path $ZSHCACHEDIR/cache/
+zstyle ':completion::complete:*' use-cache 1 cache-path $ZSHCACHEDIR
 
 # Expand partial paths
 zstyle ':completion:*' expand 'yes'
