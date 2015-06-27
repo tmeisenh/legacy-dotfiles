@@ -34,6 +34,12 @@ diskeject () {
     drutil tray eject -drive $1
 }
 
+upgrade_homebrew() {
+  brew update --verbose
+  brew outdated
+  brew upgrade
+}
+
 #********************************************************************
 # environment stuff
 #********************************************************************
