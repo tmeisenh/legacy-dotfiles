@@ -128,18 +128,6 @@ function ssh-automate-login () {
 # alias b/c i'm old
 alias sshbless=ssh-automate-login
 
-function create_remote_git() {
-    ssh $1 "mkdir -m 700 ~/git/$2.git && cd ~/git/$2.git && git --bare init"
-}
-
-function update_iob.com {
-    ssh tmeisenh@dev.indexoutofbounds.com /home/tmeisenh/install_site.sh
-}
-
-function update_deviob.com {
-    ssh tmeisenh@dev.indexoutofbounds.com /home/tmeisenh/dev_site.sh
-}
-
 # Generates a random password using apg.
 function random_password() {
     echo "Here are ten random passwords for you.  Pick one, or run again. \n\n"
