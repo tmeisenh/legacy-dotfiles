@@ -44,8 +44,8 @@ upgrade_homebrew() {
 # environment stuff
 #********************************************************************
 
-export JAVA_HOME=$(/usr/libexec/java_home)
-export GOROOT=$(/usr/local/opt/go)
+export JAVA_HOME=/usr/libexec/java_home
+export GOROOT=/usr/local/opt/go
 
 export PATH=$JAVA_HOME/bin:$GOROOT/bin:$PATH
 # End
