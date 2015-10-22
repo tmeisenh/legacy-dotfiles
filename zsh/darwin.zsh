@@ -40,16 +40,13 @@ upgrade_homebrew() {
   brew upgrade
 }
 
-if [ -f /usr/local/opt/autoenv/activate.sh ]; then
-  source /usr/local/opt/autoenv/activate.sh
-fi
-
 #********************************************************************
 # environment stuff
 #********************************************************************
 
 export JAVA_HOME=/usr/libexec/java_home
 export GOROOT=/usr/local/opt/go
+export GOPATH=$HOME/git/go_workspace
 
-export PATH=$JAVA_HOME/bin:$GOROOT/bin:$PATH
+export PATH=$JAVA_HOME/bin:$GOROOT/bin:$GOPATH:/bin:$PATH
 # End
