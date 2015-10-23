@@ -30,9 +30,10 @@ setopt nullglob
 # History Options
 setopt appendhistory 
 setopt extendedhistory 
+setopt inc_append_history
 setopt banghist
-setopt sharehistory 
 setopt histignoredups 
+setopt sharehistory 
 
 # PUSHD/POPD
 setopt pushdtohome 
