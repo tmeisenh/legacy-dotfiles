@@ -88,20 +88,6 @@ function showarchive() {
     fi
 }
 
-
-function normalize () {
-    if [ -z $1 ]; then
-        echo "Usage: normalize <file>";
-    else    
-        if [ -f $1 ]; then
-            perl -pi -e 's/\r\n/\n/g' $1
-            perl -pi -e 's/\r/\n/g' $1
-        else
-            echo "'$1' is not a valid file"
-        fi
-    fi
-}
-
 # This only works if the remote host allows password authentication
 # If you leave the passphrase blank you won't have to type a password for
 # access into the remote system.
@@ -127,38 +113,6 @@ function ssh-automate-login () {
 
 # alias b/c i'm old
 alias sshbless=ssh-automate-login
-
-# Generates a random password using apg.
-function random_password() {
-    echo "Here are ten random passwords for you.  Pick one, or run again. \n\n"
-    apg -q -m 10 -x 10 -M NC -n 10 -t
-}
-
-function prompt_fix_white() {
-    PROMPT="%{${fg_red}%}%n@%m %@ %{${fg_lblue}%}%1d %# %{${fg_white}%}"
-}
-
-function prompt_fix_black() {
-    PROMPT="%{${fg_red}%}%n@%m %@ %{${fg_lblue}%}%1d %# %{${fg_black}%}"
-}
-
-# lowercases a string
-# accepts piped input
-function to_lower() {
-  while read data 
-  do
-    echo $data | tr "[:upper:]" "[:lower:]"
-  done
-}
-
-# uppercases a string 
-# accepts piped input
-function to_upper() {
-  while read data 
-  do
-    echo $data | tr "[:lower:]" "[:upper:]"
-  done
-}
 
 function unix_timestamp_to_date() {
     perl -e "require 'ctime.pl'; print &ctime($1);"
