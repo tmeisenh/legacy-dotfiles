@@ -20,8 +20,11 @@ alias xcode="open -a Xcode"
 compctl -g '*.(xcworkspace|xcodeproj)' xcode
 
 # homebrew manpath additions
-if [ -f /usr/local/opt/coreutils/libexec/gnubin ]; then
-    MANPATH=/usr/local/opt/coreutils/libexec/gnubin:$MANPATH
+if [ -d /usr/local/opt/coreutils/libexec/gnuman ]; then
+  manpath=(
+    /usr/local/opt/coreutils/libexec/gnuman
+    $manpath
+  )
 fi
 
 # Hash common directories
@@ -47,5 +50,9 @@ upgrade_homebrew() {
 export JAVA_HOME=/usr/libexec/java_home
 export GOPATH=$HOME/git/go_workspace
 
-export PATH=$JAVA_HOME/bin:$GOPATH/bin:$PATH
+path=(
+  $JAVA_HOME/bin 
+  $GOPATH/bin 
+  $path
+)
 # End

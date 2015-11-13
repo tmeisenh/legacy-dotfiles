@@ -56,14 +56,20 @@ zle -N predict-off            && \
 bindkey "^X^Z" predict-on     && \
 bindkey "^Z" predict-off      && \
 
-# For root users, ensure that /usr/local/sbin, /usr/sbin, and /sbin
-# are in the path.
-if [ "`id -u`" = "0" ]; then
-    echo $PATH | grep /usr/local/sbin 1> /dev/null 2> /dev/null
-    if [ ! $? = 0 ]; then
-        PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
-    fi
-fi
+# set common paths
+path=(
+  /usr/local/{bin,sbin}
+  /usr/{bin,sbin}
+  /{bin,sbin}
+  $path
+)
+
+# set common man paths
+manpath=(
+  /usr/local/share/man
+  /usr/share/man
+  $manpath
+)
 
 [[ -d $HOME/bin ]] && path=($path $HOME/bin)
 [[ -d $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"` ]] && path=($path $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"`)

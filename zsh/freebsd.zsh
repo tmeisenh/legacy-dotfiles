@@ -86,7 +86,16 @@ export ANT_HOME=/usr/local/share/java/apache-ant
 export GRADLE_HOME=/usr/local/share/java/gradle
 export ANDROID_HOME=/home/travis/android-sdk/sdk
 
-export PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
+path=(
+  $JAVA_HOME/bin 
+  $M2_HOME/bin
+  $ANT_HOME/bin
+  $GRADLE_HOME/bin
+  $ANDROID_HOME/platform-tools
+  $ANDROID_HOME/tools
+  $path
+)
+
 
 # FreeBSD uses a javawrapper.sh in /usr/local/bin to execute java type commands.
 # We manually set java and JAVA_HOME in case someone else needs it (maven/ant/gradle)
