@@ -26,8 +26,8 @@ function prompt_tmeisenh_setup {
   # Load required functions.
   autoload -Uz add-zsh-hook
   autoload -Uz vcs_info
-  autoload -U promptinit
-  promptinit
+  #autoload -U colors && colors # colors must be loaded
+  autoload -U promptinit && promptinit
 
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_tmeisenh_precmd
