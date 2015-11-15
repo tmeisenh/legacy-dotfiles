@@ -42,7 +42,7 @@ uninstall-dotfiles() {
 
 	$rm_cmd -f ${DEST}/.logout 
 
-  echo "Manualy remove $HOME/private.zsh if you didn't alter it."
+  echo "Manualy remove $HOME/private.zsh if you want to discard it."
 }
 
 uninstall-dotfiles
