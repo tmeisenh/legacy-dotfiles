@@ -5,6 +5,18 @@
 # Works on zsh versions > 4.0.9.
 #********************************************************************
 
+# Remove existing comp cache
+rm -rf $HOME/.zcompdump
+
+# Add zsh-completions to fpath
+fpath=(
+  /usr/local/share/zsh-completions 
+  $fpath
+)
+
+# load compinit!
+autoload -U compinit && compinit
+
 # set command completions
 zle -C complete complete-word complete-files
 

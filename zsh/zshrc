@@ -39,6 +39,22 @@ SAVEHIST=65536
 DIRSTACKSIZE=16
 HISTFILE=$HOME/.zsh_history
 
+# Load some cool zsh features
+typeset -U path cdpath manpath fpath
+autoload -U zed
+autoload zmv
+autoload zcalc 
+autoload zargs
+autoload colors && colors
+autoload history-search-end
+autoload zkbd
+zmodload -i zsh/complist
+autoload -U predict-on && \
+zle -N predict-on             && \
+zle -N predict-off            && \
+bindkey "^X^Z" predict-on     && \
+bindkey "^Z" predict-off      && \
+
 # set common paths
 path=(
   /usr/local/{bin,sbin}
@@ -54,30 +70,8 @@ manpath=(
   $manpath
 )
 
-fpath=(
-  /usr/local/share/zsh-completions 
-  $fpath
-)
-
-# Load some cool zsh features
-typeset -U path cdpath manpath fpath
-autoload -U compinit && compinit
-autoload -U zed
-autoload zmv
-autoload zcalc
-autoload zargs
-autoload colors && colors
-autoload history-search-end
-autoload zkbd
-zmodload -i zsh/complist
-autoload -U predict-on && \
-zle -N predict-on             && \
-zle -N predict-off            && \
-bindkey "^X^Z" predict-on     && \
-bindkey "^Z" predict-off      && \
-
-[[ -d $HOME/bin ]] && path=($path $HOME/bin)
-[[ -d $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"` ]] && path=($path $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"`)
+[[ -d $HOME/bin ]] && path=($HOME/bin $path)
+[[ -d $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"` ]] && path=($HOME/bin-`uname | tr "[:upper:]" "[:lower:]"` $path)
 
 # Set display colors - This is a GNU coreutils ability only.  We use 
 # /etc/DIR_COLORS or our own, modified version which we store in ~.
