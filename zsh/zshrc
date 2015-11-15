@@ -35,9 +35,9 @@ watch=(notme root)
 
 # Create $user history files
 HISTSIZE=10000
-HISTFILE=$HOME/.zsh_history
 SAVEHIST=65536
 DIRSTACKSIZE=16
+HISTFILE=$HOME/.zsh_history
 
 # Load some cool zsh features
 typeset -U path cdpath manpath fpath
@@ -46,7 +46,7 @@ autoload -U zed
 autoload zmv
 autoload zcalc
 autoload zargs
-autoload colors; colors
+autoload colors && colors
 autoload history-search-end
 autoload zkbd
 zmodload -i zsh/complist
@@ -119,7 +119,6 @@ source $ZSHCONF/prompt.zsh
 
 # Load private (not stored in git) settings
 source $ZSHCONF/private.zsh
-
 
 # Umask settings 
 # -rw-r--r--
