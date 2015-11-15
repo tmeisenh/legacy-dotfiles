@@ -86,29 +86,14 @@ limit core 0
 limit coredumpsize 0
 limit -s
 
-# Load system wide aliases
-source $ZSHCONF/aliases.zsh
-
-# Load shell options
-source $ZSHCONF/options.zsh
-
-# Configure prompt to my specifications
-source $ZSHCONF/prompt.zsh
-
 # Configure keys working (never works by default)
 source $ZSHCONF/keys.zsh
 
-# Load command completions
-source $ZSHCONF/completions.zsh
+# Load system wide aliases
+source $ZSHCONF/aliases.zsh
 
 # Load common shellfunctions
 source $ZSHCONF/shellfunctions.zsh
-
-# Load various envrionment settings
-source $ZSHCONF/environment.zsh
-
-# Load private (not stored in git) settings
-source $ZSHCONF/private.zsh
 
 # Load distro specific settings (darwin, freebsd, linux, etc)
 if [[ -s "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
@@ -119,6 +104,22 @@ fi
 if [[ -s "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
   source "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh"
 fi
+
+# Load various envrionment settings
+source $ZSHCONF/environment.zsh
+
+# Load shell options
+source $ZSHCONF/options.zsh
+
+# Load command completions
+source $ZSHCONF/completions.zsh
+
+# Configure prompt to my specifications
+source $ZSHCONF/prompt.zsh
+
+# Load private (not stored in git) settings
+source $ZSHCONF/private.zsh
+
 
 # Umask settings 
 # -rw-r--r--
