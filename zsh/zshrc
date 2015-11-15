@@ -39,6 +39,26 @@ SAVEHIST=65536
 DIRSTACKSIZE=16
 HISTFILE=$HOME/.zsh_history
 
+# set common paths
+path=(
+  /usr/local/{bin,sbin}
+  /usr/{bin,sbin}
+  /{bin,sbin}
+  $path
+)
+
+# set common man paths
+manpath=(
+  /usr/local/share/man
+  /usr/share/man
+  $manpath
+)
+
+fpath=(
+  /usr/local/share/zsh-completions 
+  $fpath
+)
+
 # Load some cool zsh features
 typeset -U path cdpath manpath fpath
 autoload -U compinit && compinit
@@ -55,21 +75,6 @@ zle -N predict-on             && \
 zle -N predict-off            && \
 bindkey "^X^Z" predict-on     && \
 bindkey "^Z" predict-off      && \
-
-# set common paths
-path=(
-  /usr/local/{bin,sbin}
-  /usr/{bin,sbin}
-  /{bin,sbin}
-  $path
-)
-
-# set common man paths
-manpath=(
-  /usr/local/share/man
-  /usr/share/man
-  $manpath
-)
 
 [[ -d $HOME/bin ]] && path=($path $HOME/bin)
 [[ -d $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"` ]] && path=($path $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"`)
