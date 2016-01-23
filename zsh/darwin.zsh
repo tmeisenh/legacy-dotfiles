@@ -16,6 +16,7 @@ VIM=/usr/local/share/vim/vim74
 alias less="$VIM/macros/less.sh"
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
 export GIT_PAGER='less'
+export GIT_EDITOR='vim'
 
 # xcode alias and completion
 alias xcode="open -a Xcode"
