@@ -126,3 +126,7 @@ function import_gpg_keys_from_usb() {
   find /mnt/usb/gnugpg -type f -name '*_pub.gpg' -exec gpg --import '{}' \;
   find /mnt/usb/gnugpg -type f -name '*_sec.gpg' -exec gpg --allow-secret-key-import --import '{}' \;
 }
+
+function delete_remote_git_tag() {
+  git tag -d ${1} && git push origin :refs/tags/${1}
+}
