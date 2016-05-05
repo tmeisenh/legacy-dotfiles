@@ -14,6 +14,8 @@ bindkey "^[[F" end-of-line             ## end
 # use vim for less, man, and git
 VIM=/usr/local/share/vim/vim74
 alias less="$VIM/macros/less.sh"
+alias ctags-objc="ctags --languages=objectivec --langmap=objectivec:.h.m"
+
 export MANPAGER="col -b | $VIM/macros/less.sh -c 'set ft=man nomod nolist nofoldenable' -"
 export GIT_PAGER='less'
 export GIT_EDITOR='vim'
@@ -44,6 +46,10 @@ upgrade_homebrew() {
   brew update --verbose
   brew outdated
   brew upgrade
+}
+
+function clean_derived_data() {
+  rm -rf ~/Library/Developer/Xcode/DerivedData
 }
 
 #********************************************************************
