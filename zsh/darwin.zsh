@@ -22,7 +22,7 @@ export GIT_EDITOR='vim'
 
 # xcode alias and completion
 alias xcode="open -a Xcode"
-compctl -g '*.(xcworkspace|xcodeproj)' xcode
+compctl -g '*.(xcworkspace|xcodeproj)' + -g '*(-/)' xcode
 
 # homebrew manpath additions
 if [ -d /usr/local/opt/coreutils/libexec/gnuman ]; then
