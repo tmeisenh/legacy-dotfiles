@@ -24,6 +24,16 @@ export GIT_EDITOR='vim'
 alias xcode="open -a Xcode"
 compctl -g '*.(xcworkspace|xcodeproj)' + -g '*(-/)' xcode
 
+# opens any workspace in the current working directory
+function openws {
+	find . -type d -name "*.xcworkspace" -exec open {} \;
+}
+
+function clean_derived_data() {
+  rm -rf ~/Library/Developer/Xcode/DerivedData
+}
+
+
 # homebrew manpath additions
 if [ -d /usr/local/opt/coreutils/libexec/gnuman ]; then
   manpath=(
@@ -46,10 +56,6 @@ upgrade_homebrew() {
   brew update --verbose
   brew outdated
   brew upgrade
-}
-
-function clean_derived_data() {
-  rm -rf ~/Library/Developer/Xcode/DerivedData
 }
 
 #********************************************************************
