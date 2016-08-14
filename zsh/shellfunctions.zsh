@@ -130,3 +130,7 @@ function import_gpg_keys_from_usb() {
 function delete_remote_git_tag() {
   git tag -d ${1} && git push origin :refs/tags/${1}
 }
+
+function strip_spaces_from_files {
+  find ${1} -type f -exec bash -c 'mv "$0" "${0// /_}"' {} \;
+}
