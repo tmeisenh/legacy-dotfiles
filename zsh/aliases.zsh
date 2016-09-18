@@ -17,7 +17,7 @@ alias -g S="|sort"
 alias -g C="|wc -l"
 
 # set ls based on core-utils else assume bsd versions
-gls &>/dev/null 2>&1 && alias ls="gls --color -F -T 0 -b -h -X" || alias ls="ls -F -T -b -h -C -G"
+gls &>/dev/null 2>&1 && alias ls="gls --color -F -T 0 -b -h -X -H" || alias ls="ls -F -T -b -h -C -G"
 
 alias bz="tar -xvjf"
 alias ctar="tar -vzcf"
