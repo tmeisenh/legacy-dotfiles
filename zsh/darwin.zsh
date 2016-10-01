@@ -43,7 +43,7 @@ if [ -d /usr/local/opt/coreutils/libexec/gnuman ]; then
 fi
 
 # Hash common directories
-hash -d log=/var/log
+#hash -d log=/var/log
 
 # Usage: diskeject drive_number
 # Description: kills a process
