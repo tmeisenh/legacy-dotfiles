@@ -65,7 +65,7 @@ upgrade_homebrew() {
 export JAVA_HOME=`/usr/libexec/java_home`
 export GOPATH=$HOME/git/go_workspace
 export SCALA_HOME=/usr/local/opt/scala/idea
-openssl_bin=$(brew --prefix openssl)/bin # 4/2016 - Homebrew doesn't allow you to link openssl
+openssl_bin=/usr/local/opt/openssl/bin # 4/2016 - Homebrew doesn't allow you to link openssl
 
 path=(
   $JAVA_HOME/bin 
