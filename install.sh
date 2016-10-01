@@ -13,6 +13,7 @@ mv_cmd="/bin/mv"
 
 install-dotfiles() {
 	echo "Installing tmeisenh dotfiles..."
+  $rm_cmd -rf $HOME/.zcompdump
   $cp_cmd -a ${SRC}/zsh ${DEST}/.zsh-tmeisenh-dotfiles
 
   !(ls $HOME/private.zsh > /dev/null 2> /dev/null) || $mv_cmd  -v $HOME/private.zsh ${DEST}/.zsh-tmeisenh-dotfiles/private.zsh

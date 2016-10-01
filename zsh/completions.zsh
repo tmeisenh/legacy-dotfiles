@@ -6,7 +6,7 @@
 #********************************************************************
 
 # Remove existing comp cache
-rm -rf $HOME/.zcompdump
+#rm -rf $HOME/.zcompdump
 
 # Add zsh-completions to fpath
 fpath=(
