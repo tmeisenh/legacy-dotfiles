@@ -24,16 +24,16 @@ unsetopt menu_complete
 # Globbing Options
 setopt extended_glob 
 setopt glob_dots 
-setopt globcomplete 
+setopt glob_complete 
 setopt nullglob
 
 # History Options
-setopt appendhistory 
-setopt extendedhistory 
+setopt append_history 
+setopt extended_history 
 setopt inc_append_history
-setopt banghist
-setopt histignoredups 
-setopt sharehistory 
+setopt bang_hist
+setopt hist_ignore_dups 
+setopt share_history 
 
 # PUSHD/POPD
 setopt pushdtohome 
