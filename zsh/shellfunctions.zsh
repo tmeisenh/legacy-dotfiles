@@ -14,6 +14,13 @@ function pskill () {
     kill -9 `ps ax | $GREP $1 | $GREP -v grep | awk --posix '{ print $1 }'`
 }
 
+
+# Usage: killport <port number>
+# Description: kills the process listening on the given port
+function killport () {
+  lsof -t -i :$1 | xargs --no-run-if-empty kill -9
+}
+
 # Usage: smartextract <file>
 # Description: extracts archived files
 # This uses the aliases defined above
