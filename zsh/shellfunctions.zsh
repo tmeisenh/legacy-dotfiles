@@ -141,3 +141,16 @@ function delete_remote_git_tag() {
 function strip_spaces_from_files {
   find ${1} -type f -exec bash -c 'mv "$0" "${0// /_}"' {} \;
 }
+
+function read_x509() {
+  openssl x509 -noout -text -in $1
+}
+
+function read_CSR() {
+  openssl req -noout -text -in $1
+}
+
+function check_CSR() {
+  openssl req -text -noout -verify -in $1
+}
+
