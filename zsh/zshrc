@@ -4,13 +4,11 @@
 #
 # Works on zsh versions > 4.0.9.
 #********************************************************************
-#
-# Source /etc/profile
-if [ -f /etc/profile ]; then
-    source /etc/profile
-fi
 
-# Some environment variables and settings I like
+# Source /etc/profile
+[[ -f /etc/profile ]] && source /etc/profile
+
+# Some environment variables and settings
 export USER=`id -un`
 export HOSTNAME=`/bin/hostname`
 export LC_ALL=en_US.utf-8
@@ -49,11 +47,12 @@ autoload colors && colors
 autoload history-search-end
 autoload zkbd
 zmodload -i zsh/complist
-autoload -U predict-on && \
-zle -N predict-on             && \
-zle -N predict-off            && \
-bindkey "^X^Z" predict-on     && \
-bindkey "^Z" predict-off      && \
+autoload -U predict-on          && \
+  zle -N predict-on             && \
+  zle -N predict-off
+
+bindkey "^X^Z" predict-on
+bindkey "^Z" predict-off
 
 # set common paths
 path=(
