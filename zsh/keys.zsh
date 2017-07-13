@@ -30,3 +30,5 @@ bindkey '^E' end-of-line
 bindkey '^W' complete-word
 bindkey '^L' clear-screen
 bindkey '^R' history-incremental-search-backward
+bindkey "^X^Z" predict-on
+bindkey "^Z" predict-off

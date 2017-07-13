@@ -16,8 +16,8 @@ export LANG=$LC_ALL
 export EDITOR='vi'
 export PAGER='less'
 export ZLS_COLORS=$LS_COLORS
+export ZDOTDIR=$HOME/.zsh-tmeisenh-dotfiles
 export ZSHCACHEDIR=$HOME/.zsh-cache
-export ZSHCONF=$HOME/.zsh-tmeisenh-dotfiles
 bindkey -v        #vi key bindings
 
 # Set term if not set
@@ -51,9 +51,6 @@ autoload -U predict-on          && \
   zle -N predict-on             && \
   zle -N predict-off
 
-bindkey "^X^Z" predict-on
-bindkey "^Z" predict-off
-
 # set common paths
 path=(
   /usr/local/{bin,sbin}
@@ -73,7 +70,7 @@ manpath=(
 [[ -d $HOME/bin-`uname | tr "[:upper:]" "[:lower:]"` ]] && path=($HOME/bin-`uname | tr "[:upper:]" "[:lower:]"` $path)
 
 # Set display colors - This is a GNU coreutils ability only.  We use 
-# /etc/DIR_COLORS or our own, modified version which we store in ~.
+# /etc/DIR_COLORS or our own version.
 gdircolors &>/dev/null 2>&1 && alias dircolors="gdircolors" 
 [[ -e ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors` 
 
@@ -85,38 +82,38 @@ limit coredumpsize 0
 limit -s
 
 # Configure keys working (never works by default)
-source $ZSHCONF/keys.zsh
+source $ZDOTDIR/keys.zsh
 
 # Load system wide aliases
-source $ZSHCONF/aliases.zsh
+source $ZDOTDIR/aliases.zsh
 
 # Load common shellfunctions
-source $ZSHCONF/shellfunctions.zsh
+source $ZDOTDIR/shellfunctions.zsh
 
 # Load distro specific settings (darwin, freebsd, linux, etc)
-if [[ -s "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
-  source "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh"
+if [[ -s "${ZDOTDIR}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
+  source "${ZDOTDIR}/`uname | tr "[:upper:]" "[:lower:]" `.zsh"
 fi
 
 # Load system specific settings (box1, box2, etc)
-if [[ -s "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
-  source "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh"
+if [[ -s "${ZDOTDIR}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
+  source "${ZDOTDIR}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh"
 fi
 
 # Load various envrionment settings
-source $ZSHCONF/environment.zsh
+source $ZDOTDIR/environment.zsh
 
 # Load shell options
-source $ZSHCONF/options.zsh
+source $ZDOTDIR/options.zsh
 
 # Load command completions
-source $ZSHCONF/completions.zsh
+source $ZDOTDIR/completions.zsh
 
 # Configure prompt to my specifications
-source $ZSHCONF/prompt.zsh
+source $ZDOTDIR/prompt.zsh
 
 # Load private (not stored in git) settings
-source $ZSHCONF/private.zsh
+source $ZDOTDIR/private.zsh
 
 # Umask settings 
 # -rw-r--r--
