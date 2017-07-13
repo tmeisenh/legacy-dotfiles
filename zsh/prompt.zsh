@@ -26,8 +26,17 @@ function prompt_tmeisenh_setup {
   # Load required functions.
   autoload -Uz add-zsh-hook
   autoload -Uz vcs_info
-  #autoload -U colors && colors # colors must be loaded
   autoload -U promptinit && promptinit
+  #autoload -U colors && colors # colors must be loaded
+
+  _tmeisenh_colors=(
+    "%B%F{1}" #red
+    "%B%F{2}" #green
+    "%B%F{7}" #white
+    "%B%F{3}" #yellow
+    "%B%F{4}" #blue
+    "%b%f"    #clear
+  )
 
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_tmeisenh_precmd
@@ -44,7 +53,7 @@ function prompt_tmeisenh_setup {
   zstyle ':vcs_info:*' nvcsformats ""
 
   # trailing space to separate vcs_info from cwd is in the vcs_info zstyles....
-  PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[white]%}%@ %{$fg_bold[yellow]%}${vcs_info_msg_0_}%{$fg_bold[blue]%}%1d $(prompt_char)%{$reset_color%} '
+  PROMPT='%(!.${_tmeisenh_colors[1]}.${_tmeisenh_colors[2]}%n@)%m ${_tmeisenh_colors[3]}%@ ${_tmeisenh_colors[4]}${vcs_info_msg_0_}${_tmeisenh_colors[5]}%1d $(prompt_char)${_tmeisenh_colors[6]} '
 }
 
 prompt_tmeisenh_setup "$@"
