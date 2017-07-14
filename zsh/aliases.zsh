@@ -39,6 +39,8 @@ alias ";ls"=ls
 alias ds="du -csh $1 "
 alias pingg="ping -c 3 www.google.com"
 alias dtsp="date +%F"
+
 alias vi="vim"
 alias svi="sudo vim"
-
+alias emacs='emacsclient --tty --alternate-editor=""'
+alias emacsgui='emacsclient --alternate-editor="" --create-frame --no-wait'
