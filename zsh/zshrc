@@ -51,9 +51,6 @@ autoload -U predict-on          && \
   zle -N predict-on             && \
   zle -N predict-off
 
-bindkey "^X^Z" predict-on
-bindkey "^Z" predict-off
-
 # set common paths
 path=(
   /usr/local/{bin,sbin}
