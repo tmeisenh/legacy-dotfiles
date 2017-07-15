@@ -42,5 +42,3 @@ alias dtsp="date +%F"
 
 alias vi="vim"
 alias svi="sudo vim"
-alias emacs='emacsclient --tty --alternate-editor=""'
-alias emacsgui='emacsclient --alternate-editor="" --create-frame --no-wait'
