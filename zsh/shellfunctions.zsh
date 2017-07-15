@@ -9,7 +9,7 @@ setenv() { export $1=$2 }  # csh compatibility
 
 # Usage: pskill <application/program name>
 # Description: kills a process
-function pskill () { 
+function pskill () {
     GREP=/usr/bin/grep
     kill -9 `ps ax | $GREP $1 | $GREP -v grep | awk --posix '{ print $1 }'`
 }
@@ -58,7 +58,7 @@ function smartextract () {
         uncompress $1
         ;;
       *)
-        echo "'$1' cannot be extracted via smartextract()." 
+        echo "'$1' cannot be extracted via smartextract()."
         ;;
     esac
   else
@@ -71,23 +71,23 @@ function smartextract () {
 function showarchive() {
   if [[ -f $1 ]]; then
     case $1 in
-      *.tar.gz)  
-        gunzip -c $1 | tar -tf - -- 
+      *.tar.gz)
+        gunzip -c $1 | tar -tf - --
         ;;
       *.tar)
-        tar -tf $1 
+        tar -tf $1
         ;;
       *.tgz)
-        tar -ztf $1 
+        tar -ztf $1
         ;;
       *.zip)
-        unzip -l $1 
+        unzip -l $1
         ;;
       *.bz2)
-        bzless $1 
+        bzless $1
         ;;
       *)
-        echo "'$1' cannot be shown via showarchive" 
+        echo "'$1' cannot be shown via showarchive"
         ;;
     esac
   else

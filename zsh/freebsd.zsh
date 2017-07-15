@@ -45,7 +45,7 @@ function search_ports() {
 }
 
 function find_outofdate_ports() {
-  sh -c "pkg_version -q -l '<'" 
+  sh -c "pkg_version -q -l '<'"
 }
 
 #TODO test this
@@ -87,7 +87,7 @@ export GRADLE_HOME=/usr/local/share/java/gradle
 export ANDROID_HOME=/home/travis/android-sdk/sdk
 
 path=(
-  $JAVA_HOME/bin 
+  $JAVA_HOME/bin
   $M2_HOME/bin
   $ANT_HOME/bin
   $GRADLE_HOME/bin

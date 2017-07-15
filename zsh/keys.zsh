@@ -14,13 +14,13 @@ bindkey "^[[5~" up-line-or-history     ## PageUp
 bindkey "^[[6~" down-line-or-history   ## PageDown
 bindkey "^[1~" beginning-of-line       ## home
 bindkey "^[4~" end-of-line             ## end
-bindkey "^[e" expand-cmd-path 
+bindkey "^[e" expand-cmd-path
 bindkey "^[[A" up-line-or-search       ## up arrow for back-history-search
 bindkey "^[[B" down-line-or-search     ## down arrow for fwd-history-search
 bindkey " " magic-space                ## do history expansion on space
 
 stty erase `tput kbs`             ## I forget why I have this...
-stty erase '^?'         
+stty erase '^?'
 
 # Binding of the keys for command line editing
 # Just hit control plus key!

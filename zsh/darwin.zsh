@@ -47,7 +47,7 @@ hash -d log=/var/log
 
 # Usage: diskeject drive_number
 # Description: kills a process
-diskeject () { 
+diskeject () {
     echo -n "unmounting drive $1..."
     drutil tray eject -drive $1
 }
@@ -68,8 +68,8 @@ export SCALA_HOME=/usr/local/opt/scala/idea
 openssl_bin=/usr/local/opt/openssl/bin # 4/2016 - Homebrew doesn't allow you to link openssl
 
 path=(
-  $JAVA_HOME/bin 
-  $GOPATH/bin 
+  $JAVA_HOME/bin
+  $GOPATH/bin
   $openssl_bin
   $path
 )

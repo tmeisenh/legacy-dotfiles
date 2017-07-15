@@ -7,11 +7,11 @@
 
 function prompt_tmeisenh_precmd {
   vcs_info
-  print -Pn "\033]0;%n@%m%#  %~  %W :: %T\a" 
+  print -Pn "\033]0;%n@%m%#  %~  %W :: %T\a"
 }
 
 function prompt_tmeisenh_preexec {
-  print -Pn "\033]0;%n@%m%#  <$1>  %W :: %T\a" 
+  print -Pn "\033]0;%n@%m%#  <$1>  %W :: %T\a"
 }
 
 function prompt_char {
@@ -40,7 +40,7 @@ function prompt_tmeisenh_setup {
 
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_tmeisenh_precmd
-  add-zsh-hook preexec prompt_tmeisenh_preexec 
+  add-zsh-hook preexec prompt_tmeisenh_preexec
   # Set vcs_info parameters.
   # check-for-changes (disabled by default) can be slow.
   # For actionformats/formats: http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information

@@ -10,7 +10,7 @@
 
 # Add zsh-completions to fpath
 fpath=(
-  /usr/local/share/zsh-completions 
+  /usr/local/share/zsh-completions
   $fpath
 )
 
@@ -34,7 +34,7 @@ zstyle ':completion:incremental:*' completer _complete _correct
 zstyle ':completion:predict:*' completer _complete
 zstyle ':completion:::::' completer _complete _correct
 zstyle ':completion:*:processes' command 'ps -au $USER'
-zstyle ':completion:*' verbose yes 
+zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%d completing %d'
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
@@ -71,7 +71,7 @@ zstyle ':completion::complete:*' '\'
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
 
-# Tag-order 'globbed-files directories' all-files 
+# Tag-order 'globbed-files directories' all-files
 zstyle ':completion::complete:*:tar:directories' file-patterns '*~.*(-/)'
 
 # Don't complete backup files as executables
@@ -91,7 +91,7 @@ zstyle ':completion:*:descriptions' format "%d"
 # Messages/warnings format
 zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format '%d--No matches for: %d'
- 
+
 # Describe options in full
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
@@ -127,7 +127,7 @@ compctl -f -x 'S[1][2][3][4][5][6][7][8][9]' -k '(1 2 3 4 5 6 7 8 9)' \
 
 compdef _gnu_generic feh df
 
-# Tab host completion for programs  
+# Tab host completion for programs
 compctl -k hostnames ping sftp host ssh
 
 # Talk completion
@@ -156,7 +156,7 @@ compctl -g '*.html' + -g '*(-/)' appletviewer
 compctl -g '^(*.o|*.class|*.gif|*.a|*.pdf|*.rtf|*.doc|*.sxw)' + -g '*(-/)' more less cat
 compctl -g '^(*.o|*.class|*.gif|*.a|*.pdf|*.rtf|*.doc|*.sxw|*.zip|*.tar|*.gz|*.bz2|*.tgz|*.rpm)' + -g '*(-/)' vi vim
 
-# Distro specific filename completion filtering 
+# Distro specific filename completion filtering
 compctl -g '*.tgz' + -g '*(-/)' removepkg installpkg explodepkg upgradepkg
 compctl -g '*.rpm' + -g '*(-/)' rpm2tgz rpm
 compctl -g '*.src.rpm' + -g '*(-/)' rpmbuild
