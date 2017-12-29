@@ -133,7 +133,7 @@ function delete_remote_git_tag() {
 }
 
 function strip_spaces_from_files {
-  find ${1} -type f -exec bash -c 'mv "$0" "${0// /_}"' {} \;
+  find ${1} -type f -exec bash -c 'mv -f "$0" "${0// /_}"' {} \;
 }
 
 function read_x509() {
