@@ -138,25 +138,7 @@ compctl -K whoson talk ytalk
 #function listclass () { reply=(`${(ls *.class)%.class}`); }
 #function listclass () { reply=(${$(ls *.class)%.class}); }
 #compctl -K listclass java
-compctl -g '*.java' + -g '*(-/)' javac
-compctl -g '*.pdf' + -g '*(-/)' xpdf
 compctl -g '*.(Z|gz|tgz)' + -g '*' zcat gunzip
 compctl -g '*.(tar.Z|tar.gz|tgz|tar.bz2)' + -g '*' tar smartextract se
 compctl -g '*.(zip|ZIP)' + -g '*' unzip smartextract se
-compctl -g '*.(mpg|MPG|mpeg|MPEG|avi|AVI|wmv|WMV|mov|MOV|asf|ASF)' + -g '*(-/)' gxine xine
-compctl -g '*.(mp3|MP3|ogg|OGG|wav|WAV|temp|TEMP)' + -g '*(-/)'  mpg123 xmms
-compctl -g '*(-*)' + -g '*(-/)' strip
-compctl -g '*.(ps|eps)' + -g '*(-/)' gs ghostview psnup psduplex ps2ascii
-compctl -g '*.dvi' + -g '*(-/)' xdvi dvips
-compctl -g '*.(xpm|xpm.gz)' + -g '*(-/)' xpmroot sxpm pixmap xpmtoppm
 compctl -g '*(-/) .*(-/)' cd
-compctl -g '*.html' + -g '*(-/)' appletviewer
-
-# Reverse filename filtering
-compctl -g '^(*.o|*.class|*.gif|*.a|*.pdf|*.rtf|*.doc|*.sxw)' + -g '*(-/)' more less cat
-compctl -g '^(*.o|*.class|*.gif|*.a|*.pdf|*.rtf|*.doc|*.sxw|*.zip|*.tar|*.gz|*.bz2|*.tgz|*.rpm)' + -g '*(-/)' vi vim
-
-# Distro specific filename completion filtering
-compctl -g '*.tgz' + -g '*(-/)' removepkg installpkg explodepkg upgradepkg
-compctl -g '*.rpm' + -g '*(-/)' rpm2tgz rpm
-compctl -g '*.src.rpm' + -g '*(-/)' rpmbuild
