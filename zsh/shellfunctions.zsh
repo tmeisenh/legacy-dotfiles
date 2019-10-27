@@ -136,6 +136,10 @@ function strip_spaces_from_files {
   find ${1} -type f -exec bash -c 'mv -f "$0" "${0// /_}"' {} \;
 }
 
+function normalize_filename {
+  mv -f "$1" "${1// /_}"
+}
+
 function read_x509() {
   openssl x509 -noout -text -in $1
 }
