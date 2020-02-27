@@ -10,10 +10,8 @@ setenv() { export $1=$2 }  # csh compatibility
 # Usage: pskill <application/program name>
 # Description: kills a process
 function pskill () {
-    GREP=/usr/bin/grep
-    kill -9 `ps ax | $GREP $1 | $GREP -v grep | awk --posix '{ print $1 }'`
+    pkill -f $1
 }
-
 
 # Usage: killport <port number>
 # Description: kills the process listening on the given port
