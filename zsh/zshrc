@@ -90,16 +90,6 @@ source $ZSHCONF/aliases.zsh
 # Load common shellfunctions
 source $ZSHCONF/shellfunctions.zsh
 
-# Load distro specific settings (darwin, freebsd, linux, etc)
-if [[ -s "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
-  source "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh"
-fi
-
-# Load system specific settings (box1, box2, etc)
-if [[ -s "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
-  source "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh"
-fi
-
 # Load various envrionment settings
 source $ZSHCONF/environment.zsh
 
@@ -112,8 +102,24 @@ source $ZSHCONF/completions.zsh
 # Configure prompt to my specifications
 source $ZSHCONF/prompt.zsh
 
+## Now, allow for system, host, etc customizations
+
+# Load distro specific settings (darwin, freebsd, linux, etc)
+if [[ -s "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
+  source "${ZSHCONF}/`uname | tr "[:upper:]" "[:lower:]" `.zsh"
+fi
+
+# Load system specific settings (box1, box2, etc)
+if [[ -s "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh" ]]; then
+  source "${ZSHCONF}/`hostname | tr "[:upper:]" "[:lower:]" `.zsh"
+fi
+
 # Load private (not stored in git) settings
 source $ZSHCONF/private.zsh
+
+# Load anything specific to a work project
+for f in $ZSHCONF/projects; do source $f; done
+
 
 # Umask settings 
 # -rw-r--r--
