@@ -118,7 +118,7 @@ fi
 source $ZSHCONF/private.zsh
 
 # Load anything specific to a work project
-for f in $ZSHCONF/projects; do source $f; done
+for f in $ZSHCONF/projects/*; do source $f; done
 
 
 # Umask settings 

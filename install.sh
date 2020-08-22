@@ -18,6 +18,7 @@ install-dotfiles() {
   $cp_cmd -a ${SRC}/zsh ${DEST}/.zsh-tmeisenh-dotfiles
 
   !(ls ${HOME}/private.zsh.bkup > /dev/null 2> /dev/null) || $mv_cmd  -v ${HOME}/private.zsh.bkup ${DEST}/.zsh-tmeisenh-dotfiles/private.zsh
+  !(ls ${HOME}/projects.bkup > /dev/null 2> /dev/null) || $mv_cmd  -v ${HOME}/projects.bkup ${DEST}/.zsh-tmeisenh-dotfiles/projects/
 
   $ln_cmd -s ${DEST}/.zsh-tmeisenh-dotfiles/zshrc ${DEST}/.zshrc
   mkdir ${DEST}/.zsh-cache
@@ -34,6 +35,7 @@ install-dotfiles() {
 uninstall-dotfiles() {
   echo "Uninstalling zsh from ${DEST}..."
   $mv_cmd ${DEST}/.zsh-tmeisenh-dotfiles/private.zsh ${HOME}/private.zsh.bkup
+  $mv_cmd ${DEST}/.zsh-tmeisenh-dotfiles/projects ${HOME}/projects.bkup
   $rm_cmd -f ${DEST}/.zshrc
   $rm_cmd -f ${DEST}/.zlogout
   $rm_cmd -rf ${DEST}/.zsh-tmeisenh-dotfiles
@@ -43,7 +45,7 @@ uninstall-dotfiles() {
 
   $rm_cmd -f ${DEST}/.logout
 
-  echo "Manualy remove ${HOME}/private.zsh if you want to discard it."
+  echo "Manualy remove ${HOME}/private.zsh.bkup and ${HOME}/projects.bkup if you want to discard them."
 }
 
 uninstall-dotfiles
