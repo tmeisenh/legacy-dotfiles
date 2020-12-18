@@ -81,15 +81,6 @@ limit core 0
 limit coredumpsize 0
 limit -s
 
-# Configure keys working (never works by default)
-source $ZSHCONF/keys.zsh
-
-# Load system wide aliases
-source $ZSHCONF/aliases.zsh
-
-# Load common shellfunctions
-source $ZSHCONF/shellfunctions.zsh
-
 # Load various envrionment settings
 source $ZSHCONF/environment.zsh
 
@@ -99,8 +90,17 @@ source $ZSHCONF/options.zsh
 # Load command completions
 source $ZSHCONF/completions.zsh
 
+# Configure keys working (never works by default)
+source $ZSHCONF/keys.zsh
+
 # Configure prompt to my specifications
 source $ZSHCONF/prompt.zsh
+
+# Load system wide aliases
+source $ZSHCONF/aliases.zsh
+
+# Load common shellfunctions
+source $ZSHCONF/shellfunctions.zsh
 
 ## Now, allow for system, host, etc customizations
 
